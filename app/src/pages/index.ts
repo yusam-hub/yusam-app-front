@@ -1,4 +1,4 @@
 export { Store } from './Store/Store'
 export { ProductInfo } from './ProductInfo/ProductInfo'
 export { ShoppingCart } from './ShoppingCart/ShoppingCart'
-export { Login } from './Login/Login'
+export { AuthLoginForm } from './Auth/AuthLoginForm'

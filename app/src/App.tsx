@@ -21,7 +21,7 @@ import {
   setUserData,
 } from './store/user.reducer'
 import { Modals } from './modals'
-import {Store, ShoppingCart, ProductInfo, Login} from './pages'
+import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { ShopPanel, ShopView } from './routes'
 import { fetchShop } from './store/app.reducer'
 import { CustomTabbar } from './components'
@@ -137,7 +137,7 @@ export const App: FC = () => {
             nav={ShopView.Main}
             activePanel={activePanel}
           >
-            <Login nav={ShopPanel.Login} />
+            <AuthLoginForm nav={ShopPanel.Login} />
             <Store nav={ShopPanel.Store} />
             <ProductInfo nav={ShopPanel.ProductInfo} />
             <ShoppingCart nav={ShopPanel.ShoppingCart} />
