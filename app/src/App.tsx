@@ -53,8 +53,6 @@ export const App: FC = () => {
 
   /** Получение данных пользователя */
   useLayoutEffect(() => {
-    console.log('platform', platform)
-    console.log('isDesktop', isDesktop)
     async function initUser() {
       // Получаем данные текущего пользователя
       const userData = await bridge.send('VKWebAppGetUserInfo', {})

@@ -27,6 +27,7 @@ export const makeRequest = async <T = never>({
 }: Arguments): Promise<T> => {
   const url = new URL(API_URL + '/' + endpoint)
   url.search = new URLSearchParams(params).toString()
+  console.log('request', url, requestOptions)
   const res = await fetch(url, requestOptions)
   return await res.json() as T
 }
