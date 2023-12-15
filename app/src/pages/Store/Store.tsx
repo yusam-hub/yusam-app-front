@@ -112,9 +112,10 @@ export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
           <Filters />
         </>
       )}
-
       <div ref={$storeContainer} className={'Store'} onScroll={onHandleScroll}>
+
         <Products products={store.products} fetching={store.isStoreFetching} />
+
         {isDesktop && (
           <div className="Sidebar">
             <Spacing size={1} />
