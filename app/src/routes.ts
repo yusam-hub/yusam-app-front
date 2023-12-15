@@ -14,6 +14,7 @@ export enum ShopView {
 }
 
 export enum ShopPanel {
+  Login = 'login',
   ProductInfo = 'productInfo',
   ShoppingCart = 'shoppingCart',
   Store = '/',
@@ -26,6 +27,7 @@ export const routes = RoutesConfig.create([
       createPanel(ShopPanel.Store, '/', []),
       createPanel(ShopPanel.ProductInfo, `/${ShopPanel.ProductInfo}`, []),
       createPanel(ShopPanel.ShoppingCart, `/${ShopPanel.ShoppingCart}`, []),
+      createPanel(ShopPanel.Login, `/${ShopPanel.Login}`, []),
     ]),
   ]),
 ])
