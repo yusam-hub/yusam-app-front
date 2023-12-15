@@ -22,10 +22,9 @@
   },
   "plugins": ["react"],
   "rules": {
-    "indent": "off",
-    "quotes": "off",
-    "semi": "off",
-    "no-empty-function": "warn",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
     "no-await-in-loop": "error",
     "no-duplicate-imports": "error",
     "no-self-compare": "error",
