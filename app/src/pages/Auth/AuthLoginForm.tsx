@@ -1,20 +1,42 @@
 import React, { FC, memo } from 'react'
-import { Button, CellButton, Checkbox, FormItem, FormLayout, FormLayoutGroup, Group, Input, Link, NavIdProps, Panel, PanelHeader, SegmentedControl, Select, Textarea } from '@vkontakte/vkui'
+import {
+  Button,
+  CellButton,
+  Checkbox,
+  FormItem,
+  FormLayout,
+  FormLayoutGroup,
+  Group, Header,
+  Input,
+  Link,
+  NavIdProps,
+  Panel,
+  PanelHeader,
+  SegmentedControl,
+  Select,
+  Textarea,
+  useAdaptivityWithJSMediaQueries
+} from '@vkontakte/vkui'
 
 /**
  * CSS IMPORT
  */
 import './AuthLoginForm.css'
+import {Filters} from "../../components";
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
-  const [userEmail, setUserEmail] = React.useState('')
-  const [userPass, setUserPass] = React.useState('')
+  const { isDesktop } = useAdaptivityWithJSMediaQueries()
+  const [ userEmail, setUserEmail] = React.useState('')
+  const [ userPass, setUserPass] = React.useState('')
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
-        <PanelHeader>Авторизация</PanelHeader>
-        <Group>
+      <div className="AuthLoginFormCenter">
+        <Group mode="card">
+          <>
+            <Header>Авторизация</Header>
+          </>
             <FormLayout>
                 <FormItem
                     htmlFor="email"
@@ -64,6 +86,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                 </FormItem>
             </FormLayout>
         </Group>
+      </div>
     </Panel>
   )
 })

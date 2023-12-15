@@ -18,12 +18,12 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
 
     const onPaymantTabbarItemClick = () => {
       if (activePanel === ShopPanel.ShoppingCart) return
-      routeNavigator.push(`/${ShopPanel.ShoppingCart}`)
+      void routeNavigator.push(`/${ShopPanel.ShoppingCart}`)
     }
 
     const onViewingTabbarItemClick = () => {
       if (activePanel !== ShopPanel.ShoppingCart) return
-      routeNavigator.push('/')
+      void routeNavigator.push('/')
     }
 
     return (
