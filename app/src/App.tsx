@@ -25,6 +25,7 @@ import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { ShopPanel, ShopView } from './routes'
 import { fetchShop } from './store/app.reducer'
 import { CustomTabbar } from './components'
+import {selectIsAuthorized} from "./store/auth.reducer";
 
 const APP_WIDTH = 911
 const APP_PADDING = 100
@@ -39,6 +40,7 @@ export const App: FC = () => {
   const routeNavigator = useRouteNavigator()
   /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
   const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
+  const isAuthorized = useAppSelector(selectIsAuthorized)
 
   /** Получаем текущую позицию */
   const {
@@ -113,6 +115,15 @@ export const App: FC = () => {
   useEffect(() => {
     if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
   }, [onBoardingComplete, routeNavigator])
+
+  /**
+   * случаем событие на изменение признака авторизации
+   */
+  useEffect(() => {
+    //todo: routeNavigator.showModal - можно показываать форму поверех всех без возможности закрытия как вариант
+    //if (!isAuthorized) void routeNavigator.showModal('authorizeModal')
+    console.log("isAuthorized", isAuthorized)
+  }, [isAuthorized])
 
   /**
    * SplitLayout - Компонент-контейнер для реализации интерфейса с многоколоночной структурой [https://vkcom.github.io/VKUI/#/SplitLayout]
