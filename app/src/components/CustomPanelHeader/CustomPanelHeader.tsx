@@ -4,7 +4,7 @@ import {
   useRouteNavigator,
   useFirstPageCheck,
 } from '@vkontakte/vk-mini-apps-router'
-import { INITIAL_URL } from 'src/routes'
+import {AppRoutePath, INITIAL_URL} from 'src/routes'
 
 export type CustomPanelHeaderProps = {
   title: string
@@ -18,8 +18,8 @@ export const CustomPanelHeader: FC<CustomPanelHeaderProps> = memo(
 
     /** Делаем шаг назад в навигации или озвращаемся на стартовую старницу */
     const onHandleClick = () => {
-      if (isFirstPage) routeNavigator.push(INITIAL_URL)
-      else routeNavigator.back()
+      if (isFirstPage) routeNavigator.push(AppRoutePath.Home)
+      else void routeNavigator.back()
     }
 
     return (

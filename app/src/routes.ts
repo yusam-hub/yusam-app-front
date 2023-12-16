@@ -20,14 +20,21 @@ export enum AppPanel {
   ShoppingCart = 'shoppingCart',
 }
 
+export enum AppRoutePath {
+  Home = INITIAL_URL + '',
+  Login = INITIAL_URL + 'login',
+  ProductInfo = INITIAL_URL + 'product-info',
+  ShoppingCart = INITIAL_URL + 'shopping-cart',
+}
+
 /** Настройка типизированной конфигурации маршрутов */
 export const routes = RoutesConfig.create([
   createRoot(APP_ROOT, [
     createView(AppView.Main, [
-      createPanel(AppPanel.Home, '/', []),
-      createPanel(AppPanel.Login, `/${AppPanel.Login}`, []),
-      createPanel(AppPanel.ProductInfo, `/${AppPanel.ProductInfo}`, []),
-      createPanel(AppPanel.ShoppingCart, `/${AppPanel.ShoppingCart}`, []),
+      createPanel(AppPanel.Home, AppRoutePath.Home, []),
+      createPanel(AppPanel.Login, AppRoutePath.Login, []),
+      createPanel(AppPanel.ProductInfo, AppRoutePath.ProductInfo, []),
+      createPanel(AppPanel.ShoppingCart, AppRoutePath.ShoppingCart, []),
     ]),
   ]),
 ])

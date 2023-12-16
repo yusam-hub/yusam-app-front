@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react'
 import { Icon24DeleteOutline } from '@vkontakte/icons'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { OrderProduct } from 'src/types'
-import { AppPanel } from 'src/routes'
+import {AppPanel, AppRoutePath} from 'src/routes'
 import { Counter, PriceDisplay } from 'src/components'
 import { useAppDispatch } from 'src/store'
 import { deleteCartItem, updateCartItem } from 'src/store/shoppingCart.reducer'
@@ -41,7 +41,7 @@ export const CartItem: FC<OrderProduct> = memo(
     /** При клике переходим на страницу товара */
     const onItemClick = () => {
       const params = `id=${id}&name=${name}&price=${price}&back=${back}`
-      routeNavigator.push(`/${AppPanel.ProductInfo}?${params}`)
+      void routeNavigator.push(AppRoutePath.ShoppingCart + `?${params}`)
     }
 
     /** При загрузке изображения убираем класс-заглушку */

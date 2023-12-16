@@ -24,7 +24,7 @@ import { fetchProductInfo, selectProductInfo } from 'src/store/app.reducer'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppDispatch, useAppSelector } from 'src/store'
 import { ITEMS, SECTIONS } from './techConfig'
-import { AppPanel } from 'src/routes'
+import {AppPanel, AppRoutePath} from 'src/routes'
 
 import './ProductInfo.css'
 
@@ -57,7 +57,7 @@ export const ProductInfo: FC<NavIdProps> = (props) => {
     return isDesktop ? (
       <IconButton
         aria-label='shoppinfCartIcon'
-        onClick={() => routeNavigator.push(`/${AppPanel.ShoppingCart}`)}
+        onClick={() => routeNavigator.push(AppRoutePath.ShoppingCart)}
       >
         <Icon24ShoppingCartOutline />
       </IconButton>

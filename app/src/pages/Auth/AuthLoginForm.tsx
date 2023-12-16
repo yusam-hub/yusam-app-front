@@ -26,6 +26,7 @@ import {Filters} from "../../components";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {selectIsAuthorized, setIsAuthorized} from "../../store/auth.reducer";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
+import {AppRoutePath} from "../../routes";
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -50,7 +51,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   useEffect(() => {
     console.log("isAuthorized", isAuthorized)
     if (isAuthorized) {
-      void routeNavigator.push('/')
+      void routeNavigator.push(AppRoutePath.Home)
     }
   }, [isAuthorized])
 

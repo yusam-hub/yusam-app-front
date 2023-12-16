@@ -2,7 +2,7 @@ import { FC, memo } from 'react'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { Counter, TabbarItem, Tabbar } from '@vkontakte/vkui'
 import { Icon28ShoppingCartOutline, Icon28HomeOutline } from '@vkontakte/icons'
-import { AppPanel } from 'src/routes'
+import {AppPanel, AppRoutePath} from 'src/routes'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppSelector } from 'src/store'
 
@@ -18,12 +18,12 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
 
     const onPaymantTabbarItemClick = () => {
       if (activePanel === AppPanel.ShoppingCart) return
-      void routeNavigator.push(`/${AppPanel.ShoppingCart}`)
+      void routeNavigator.push(AppRoutePath.ShoppingCart)
     }
 
     const onViewingTabbarItemClick = () => {
       if (activePanel !== AppPanel.ShoppingCart) return
-      void routeNavigator.push('/')
+      void routeNavigator.push(AppRoutePath.Home)
     }
 
     return (
