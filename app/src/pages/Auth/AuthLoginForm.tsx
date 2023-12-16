@@ -58,7 +58,6 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
             {formErrors.errorMessage &&
               (
                 <FormStatus header="Ошибка в форме" mode="error">
-                  <Spacing size={10}/>
                   {formErrors.errorMessage}
                 </FormStatus>
               )
