@@ -10,6 +10,7 @@ const APP_ROOT = 'app'
 export const INITIAL_URL = '/'
 
 export enum AppView {
+  Auth = 'auth',
   Main = 'main',
 }
 
@@ -30,9 +31,11 @@ export enum AppRoutePath {
 /** Настройка типизированной конфигурации маршрутов */
 export const routes = RoutesConfig.create([
   createRoot(APP_ROOT, [
+    createView(AppView.Auth, [
+      createPanel(AppPanel.Login, AppRoutePath.Login, []),
+    ]),
     createView(AppView.Main, [
       createPanel(AppPanel.Home, AppRoutePath.Home, []),
-      createPanel(AppPanel.Login, AppRoutePath.Login, []),
       createPanel(AppPanel.ProductInfo, AppRoutePath.ProductInfo, []),
       createPanel(AppPanel.ShoppingCart, AppRoutePath.ShoppingCart, []),
     ]),

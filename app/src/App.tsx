@@ -45,8 +45,8 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = AppView.Main,
-    panel: activePanel = AppPanel.Home,
+    view: activeView = !isAuthorized ? AppView.Auth : AppView.Main,
+    panel: activePanel = !isAuthorized ? AppPanel.Login : AppPanel.Home,
   } = useActiveVkuiLocation()
 
   /** Получаем тип устройства */
@@ -55,6 +55,8 @@ export const App: FC = () => {
 
   /** Получение данных пользователя */
   useLayoutEffect(() => {
+
+    if (!isAuthorized) return;
     async function initUser() {
       // Получаем данные текущего пользователя
       const userData = await bridge.send('VKWebAppGetUserInfo', {})
@@ -79,7 +81,8 @@ export const App: FC = () => {
     }
 
     void initUser()
-  }, [dispatch])
+
+  }, [isAuthorized, dispatch])
 
   /** Растягивание экрана на всю ширину окна для десктопа */
   useEffect(() => {
@@ -104,26 +107,26 @@ export const App: FC = () => {
     window.addEventListener('resize', iframeResize)
 
     return () => window.removeEventListener('resize', iframeResize)
+
   }, [platform])
 
   /** Запрос на получение контента магазина */
   useEffect(() => {
+
+    if (!isAuthorized) return;
+
     dispatch(fetchShop())
-  }, [dispatch])
+
+  }, [isAuthorized, dispatch])
 
   /** Открытие модалки при первом заходе в апп */
   useEffect(() => {
-    if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
-  }, [onBoardingComplete, routeNavigator])
 
-  /**
-   * случаем событие на изменение признака авторизации
-   */
-  useEffect(() => {
-    //todo: routeNavigator.showModal - можно показываать форму поверех всех без возможности закрытия как вариант
-    //if (!isAuthorized) void routeNavigator.showModal('authorizeModal')
-    console.log("isAuthorized", isAuthorized)
-  }, [isAuthorized])
+    if (!isAuthorized) return;
+
+    if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
+
+  }, [isAuthorized, onBoardingComplete, routeNavigator])
 
   /**
    * SplitLayout - Компонент-контейнер для реализации интерфейса с многоколоночной структурой [https://vkcom.github.io/VKUI/#/SplitLayout]
@@ -137,24 +140,39 @@ export const App: FC = () => {
      * modal - свойство для отрисовки модальных страниц(ModalRoot)
      */
     <SplitLayout popout={routerPopout} modal={<Modals />}>
-      <SplitCol>
-        <Epic
-          activeStory={activeView}
-          tabbar={!isDesktop && isAuthorized && <CustomTabbar activePanel={activePanel} />}
-        >
-          <View
-            onSwipeBack={onSwipeBack}
-            history={panelsHistory}
-            nav={AppView.Main}
-            activePanel={activePanel}
+      {!isAuthorized ? (
+        <SplitCol>
+          <Epic
+            activeStory={AppView.Auth}
           >
-            <AuthLoginForm nav={AppPanel.Login} />
-            <Store nav={AppPanel.Home} />
-            <ProductInfo nav={AppPanel.ProductInfo} />
-            <ShoppingCart nav={AppPanel.ShoppingCart} />
-          </View>
-        </Epic>
-      </SplitCol>
+            <View
+              nav={AppView.Auth}
+              activePanel={AppPanel.Login}
+            >
+              <AuthLoginForm nav={AppPanel.Login} />
+            </View>
+          </Epic>
+        </SplitCol>
+        ) : (
+        <SplitCol>
+          <Epic
+            activeStory={activeView}
+            tabbar={!isDesktop && <CustomTabbar activePanel={activePanel} />}
+          >
+            <View
+              onSwipeBack={onSwipeBack}
+              history={panelsHistory}
+              nav={AppView.Main}
+              activePanel={activePanel}
+            >
+              <Store nav={AppPanel.Home} />
+              <ProductInfo nav={AppPanel.ProductInfo} />
+              <ShoppingCart nav={AppPanel.ShoppingCart} />
+            </View>
+          </Epic>
+        </SplitCol>
+        )
+      }
     </SplitLayout>
   )
 }
