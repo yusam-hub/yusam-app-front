@@ -45,8 +45,8 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = AppPanel.Home,
-    panel: activePanel = AppView.Main,
+    view: activeView = AppView.Main,
+    panel: activePanel = AppPanel.Home,
   } = useActiveVkuiLocation()
 
   /** Получаем тип устройства */
@@ -140,7 +140,7 @@ export const App: FC = () => {
       <SplitCol>
         <Epic
           activeStory={activeView}
-          tabbar={!isDesktop && <CustomTabbar activePanel={activePanel} />}
+          tabbar={!isDesktop && isAuthorized && <CustomTabbar activePanel={activePanel} />}
         >
           <View
             onSwipeBack={onSwipeBack}

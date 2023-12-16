@@ -1,4 +1,4 @@
-import React, { FC, memo, useLayoutEffect, useRef } from 'react'
+import React, {FC, memo, useEffect, useLayoutEffect, useRef} from 'react'
 import {
   NavIdProps,
   Panel,
@@ -18,6 +18,8 @@ import { selectFilters, selectShopName } from 'src/store/app.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './Store.css'
+import {selectIsAuthorized} from "../../store/auth.reducer";
+import {MainMenu} from "../../components/MainMenu/MainMenu";
 
 const MOBILE_LIMIT = 12
 const DESKTOP_LIMIT = 40
@@ -32,6 +34,7 @@ export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
   const store = useAppSelector(selectStore)
   const filters = useAppSelector(selectFilters)
   const shopName = useAppSelector(selectShopName)
+  const isAuthorized = useAppSelector(selectIsAuthorized)
 
   const { isDesktop } = useAdaptivityWithJSMediaQueries()
   const limit = isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT
@@ -103,6 +106,13 @@ export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
       .querySelectorAll('.ProductCard')
       .forEach(el => observer.current?.observe(el))
   }, [store.products, limit])
+
+  /**
+   * случаем событие на изменение признака авторизации
+   */
+  useEffect(() => {
+    console.log("isAuthorized", isAuthorized)
+  }, [isAuthorized])
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
