@@ -6,7 +6,7 @@ import {
   createView,
 } from '@vkontakte/vk-mini-apps-router'
 
-const SHOP_ROOT = 'shop'
+const APP_ROOT = 'app'
 export const INITIAL_URL = '/'
 
 export enum AppView {
@@ -14,7 +14,7 @@ export enum AppView {
 }
 
 export enum AppPanel {
-  Home = '/',
+  Home = 'home',
   Login = 'login',
   ProductInfo = 'productInfo',
   ShoppingCart = 'shoppingCart',
@@ -22,12 +22,12 @@ export enum AppPanel {
 
 /** Настройка типизированной конфигурации маршрутов */
 export const routes = RoutesConfig.create([
-  createRoot(SHOP_ROOT, [
+  createRoot(APP_ROOT, [
     createView(AppView.Main, [
       createPanel(AppPanel.Home, '/', []),
+      createPanel(AppPanel.Login, `/${AppPanel.Login}`, []),
       createPanel(AppPanel.ProductInfo, `/${AppPanel.ProductInfo}`, []),
       createPanel(AppPanel.ShoppingCart, `/${AppPanel.ShoppingCart}`, []),
-      createPanel(AppPanel.Login, `/${AppPanel.Login}`, []),
     ]),
   ]),
 ])
