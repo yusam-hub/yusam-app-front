@@ -4,7 +4,7 @@ import {
   Icon28ShoppingCartOutline,
   Icon24ChevronCompactRight,
 } from '@vkontakte/icons'
-import { ShopPanel } from 'src/routes'
+import { AppPanel } from 'src/routes'
 import { selectShoppingCart } from 'src/store/shoppingCart.reducer'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { useAppSelector } from 'src/store'
@@ -31,7 +31,7 @@ export const CartCountIsland: FC = memo(() => {
 
   /** При клике на остров переходим на страницу корзины */
   const onCounterClick = useCallback(() => {
-    routeNavigator.push(`/${ShopPanel.ShoppingCart}`)
+    routeNavigator.push(`/${AppPanel.ShoppingCart}`)
   }, [routeNavigator])
 
   return (

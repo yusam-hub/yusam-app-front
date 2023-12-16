@@ -22,7 +22,7 @@ import {
 } from './store/user.reducer'
 import { Modals } from './modals'
 import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
-import { ShopPanel, ShopView } from './routes'
+import { AppPanel, ShopView } from './routes'
 import { fetchShop } from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
@@ -45,7 +45,7 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = ShopPanel.Store,
+    view: activeView = AppPanel.Store,
     panel: activePanel = ShopView.Main,
   } = useActiveVkuiLocation()
 
@@ -148,10 +148,10 @@ export const App: FC = () => {
             nav={ShopView.Main}
             activePanel={activePanel}
           >
-            <AuthLoginForm nav={ShopPanel.Login} />
-            <Store nav={ShopPanel.Store} />
-            <ProductInfo nav={ShopPanel.ProductInfo} />
-            <ShoppingCart nav={ShopPanel.ShoppingCart} />
+            <AuthLoginForm nav={AppPanel.Login} />
+            <Store nav={AppPanel.Store} />
+            <ProductInfo nav={AppPanel.ProductInfo} />
+            <ShoppingCart nav={AppPanel.ShoppingCart} />
           </View>
         </Epic>
       </SplitCol>

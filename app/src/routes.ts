@@ -13,7 +13,7 @@ export enum ShopView {
   Main = 'main',
 }
 
-export enum ShopPanel {
+export enum AppPanel {
   Login = 'login',
   ProductInfo = 'productInfo',
   ShoppingCart = 'shoppingCart',
@@ -24,10 +24,10 @@ export enum ShopPanel {
 export const routes = RoutesConfig.create([
   createRoot(SHOP_ROOT, [
     createView(ShopView.Main, [
-      createPanel(ShopPanel.Store, '/', []),
-      createPanel(ShopPanel.ProductInfo, `/${ShopPanel.ProductInfo}`, []),
-      createPanel(ShopPanel.ShoppingCart, `/${ShopPanel.ShoppingCart}`, []),
-      createPanel(ShopPanel.Login, `/${ShopPanel.Login}`, []),
+      createPanel(AppPanel.Store, '/', []),
+      createPanel(AppPanel.ProductInfo, `/${AppPanel.ProductInfo}`, []),
+      createPanel(AppPanel.ShoppingCart, `/${AppPanel.ShoppingCart}`, []),
+      createPanel(AppPanel.Login, `/${AppPanel.Login}`, []),
     ]),
   ]),
 ])

@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@vkontakte/vkui'
 import { FC, memo, useCallback } from 'react'
 import { ProductPreview } from 'src/types'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
-import { ShopPanel } from 'src/routes'
+import { AppPanel } from 'src/routes'
 import { addCartItem } from 'src/store/shoppingCart.reducer'
 
 export type AddToCartButtonProps = {
@@ -22,7 +22,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = memo(
     const onButtonClick = useCallback(
       (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.stopPropagation()
-        if (isInCart) routeNavigator.push(`/${ShopPanel.ShoppingCart}`)
+        if (isInCart) routeNavigator.push(`/${AppPanel.ShoppingCart}`)
         else dispatch(addCartItem(product))
       },
       [product, isInCart, routeNavigator, dispatch]
