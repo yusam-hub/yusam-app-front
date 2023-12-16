@@ -7,7 +7,7 @@ import {
   Group, Header,
   Input,
   NavIdProps,
-  Panel, Spacing,
+  Panel, PopoutWrapper, Spacing, Spinner,
   useAdaptivityWithJSMediaQueries
 } from '@vkontakte/vkui'
 import { useAppDispatch } from "../../store";
@@ -18,6 +18,7 @@ import { IFormErrors } from "../../types";
 
 
 import './AuthLoginForm.css'
+import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   /**
@@ -30,9 +31,10 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
    * LOCAL CONST
    */
   const [ formErrors, setFormErrors] = React.useState<IFormErrors>( {
-    errorMessage: null,
+    errorMessage: '',
     errorFields: {},
   })
+  const [ controlDisabled, setControlDisabled] = React.useState<boolean>(false)
   const [ userEmail, setUserEmail] = React.useState('')
   const [ userPass, setUserPass] = React.useState('')
 
@@ -71,6 +73,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
               bottomId="email-type"
             >
               <Input
+                disabled={controlDisabled}
                 aria-labelledby="email-type"
                 id="userEmail"
                 type="email"
@@ -89,6 +92,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
               }
             >
               <Input
+                disabled={controlDisabled}
                 id="userPass"
                 type="password"
                 placeholder="введите пароль"
@@ -100,31 +104,43 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
             </FormItem>
             <FormItem>
               <Button
+                mode={controlDisabled ? 'secondary' : 'primary'}
+                disabled={controlDisabled}
                 size="l"
                 stretched
                 onClick={() =>
                 {
+                  void routeNavigator.showPopout(
+                    <SpinnerPopoutWrapper/>
+                  );
+                  setControlDisabled(true);
 
-                    setFormErrors({
-                      errorMessage: null,
-                      errorFields: {},
-                    });
+                  setFormErrors({
+                    errorMessage: '',
+                    errorFields: {},
+                  });
 
+                  setTimeout(function(){
+                    if (userEmail === 'admin' && userPass === 'Qwertyu1') {
 
-                    setTimeout(function(){
-                      if (userEmail === 'admin' && userPass === 'Qwertyu1') {
-                        dispatch(setIsAuthorized(true))
-                        void routeNavigator.push(AppRoutePath.PrivateHome);
-                      } else {
-                        setFormErrors({
-                          errorMessage: "Неверный логин/пароль",
-                          errorFields: {
-                            'userEmail' : 'Неверное значение',
-                            'userPass' : 'Неверное значение'
-                          },
-                        });
-                      }
-                    }, 2000);
+                      dispatch(setIsAuthorized(true))
+                      void routeNavigator.push(AppRoutePath.PrivateHome);
+
+                    } else {
+
+                      setControlDisabled(false);
+                      void routeNavigator.hidePopout();
+
+                      setFormErrors({
+                        errorMessage: "Неверный логин/пароль",
+                        errorFields: {
+                          'userEmail' : 'Неверное значение',
+                          'userPass' : 'Неверное значение'
+                        },
+                      });
+
+                    }
+                  }, 2000);
 
                 }}
               >
