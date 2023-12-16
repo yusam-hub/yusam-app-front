@@ -23,9 +23,12 @@ import {
 import { Modals } from './modals'
 import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanel, AppView } from './routes'
-import { fetchShop } from './store/app.reducer'
+import {fetchShop, selectAppLocale} from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
+import './i18n';
+import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -147,6 +150,15 @@ export const App: FC = () => {
     if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
 
   }, [isAuthorized, onBoardingComplete, routeNavigator])
+
+  /**
+   * LOCALE
+   */
+  const { i18n} = useTranslation();
+  const appLocale: string = useSelector(selectAppLocale)
+  useEffect(() => {
+    void i18n.changeLanguage(appLocale)
+  }, [appLocale]);
 
   /**
    * SplitLayout - Компонент-контейнер для реализации интерфейса с многоколоночной структурой [https://vkcom.github.io/VKUI/#/SplitLayout]

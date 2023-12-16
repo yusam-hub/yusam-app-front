@@ -51,6 +51,11 @@ export enum ImageBackgroundAppereance {
   Violet = 'violet',
 }
 
+export enum LocalesEnum {
+  EN = 'en',
+  RU = 'ru',
+}
+
 export interface IKeyStringValueStringObject {
   [key: string]: string
 }

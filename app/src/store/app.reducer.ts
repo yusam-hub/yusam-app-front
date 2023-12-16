@@ -1,8 +1,9 @@
-import { Category, ImageBackgroundAppereance, Product, ProductFilter, ShopInfo } from 'src/types'
+import {Category, ImageBackgroundAppereance, Product, ProductFilter, ShopInfo} from 'src/types'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as api from 'src/api'
 import { RootState } from '.'
 export interface AppState {
+  locale: string
   productInfo: Product
   categories: Category[]
   shopInfo: ShopInfo
@@ -10,6 +11,7 @@ export interface AppState {
 }
 
 export const appInitialState: AppState = {
+  locale: navigator.language.split('-')[0] || 'en',
   filters: { categoryId: '0' },
   categories: [],
   shopInfo: {
@@ -46,6 +48,9 @@ const appSlice = createSlice({
   name: 'app',
   initialState: appInitialState,
   reducers: {
+    setAppLocale(state, action: PayloadAction<string>) {
+      state.locale = action.payload
+    },
     setProductFilters(state, action: PayloadAction<ProductFilter>) {
       state.filters = action.payload
     },
@@ -85,8 +90,10 @@ export const selectShopLogo = (state: RootState) => state.app.shopInfo.logo
 export const selectShopName = (state: RootState) => state.app.shopInfo.name
 export const selectFilters = (state: RootState) => state.app.filters
 export const selectPriceTo = (state: RootState) => state.app.filters.priceTo
+export const selectAppLocale = (state: RootState) => state.app.locale
 
 export const {
+  setAppLocale,
   setFiltersPriceRange,
   setFiltersCategory,
   setProductFilters,

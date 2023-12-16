@@ -1,4 +1,5 @@
-import React, {FC, memo} from 'react'
+import './AuthLoginForm.css'
+import React, {FC, memo, useEffect} from 'react'
 import {
   Button, Card,
   FormItem,
@@ -14,11 +15,12 @@ import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import { IFormErrors } from "../../types";
-
-
-import './AuthLoginForm.css'
+import {IFormErrors} from "../../types";
 import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
+import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import {selectAppLocale, setAppLocale} from "../../store/app.reducer";
+
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   /**
@@ -26,6 +28,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
    */
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
+  const { t} = useTranslation();
 
   /**
    * LOCAL CONST
@@ -39,6 +42,9 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const [ userEmail, setUserEmail] = React.useState('admin')
   const [ userPass, setUserPass] = React.useState('Qwertyu1')
 
+  useEffect(() => {
+    //dispatch(setAppLocale('ru'))
+  }, [dispatch]);
   /**
    * RETURN CONTENT
    */
@@ -61,7 +67,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
             <Card
               mode="shadow"
             >
-              Авторизация
+              {t('LOCALE_RU')} Авторизация
             </Card>
           </Header>
         </Group>
