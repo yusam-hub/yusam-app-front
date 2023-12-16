@@ -7,7 +7,7 @@ import {
   Group, Header,
   Input,
   NavIdProps,
-  Panel, PopoutWrapper, Spacing, Spinner,
+  Panel, PopoutWrapper, PullToRefresh, Spacing, Spinner,
   useAdaptivityWithJSMediaQueries
 } from '@vkontakte/vkui'
 import { useAppDispatch } from "../../store";
@@ -34,15 +34,27 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
     errorMessage: '',
     errorFields: {},
   })
+  const [ pullToRefreshIsFetching, setPullToRefreshIsFetching ] = React.useState<boolean>(false);
   const [ controlDisabled, setControlDisabled] = React.useState<boolean>(false)
-  const [ userEmail, setUserEmail] = React.useState('')
-  const [ userPass, setUserPass] = React.useState('')
+  const [ userEmail, setUserEmail] = React.useState('admin')
+  const [ userPass, setUserPass] = React.useState('Qwertyu1')
 
   /**
    * RETURN CONTENT
    */
   return (
     <Panel className="Panel__fullScreen" {...props}>
+      <PullToRefresh onRefresh={() => {
+        setPullToRefreshIsFetching(true);
+
+        setTimeout(function (){
+
+          setPullToRefreshIsFetching(false);
+          window.location.reload();
+
+        }, 1000);
+
+      }} isFetching={pullToRefreshIsFetching}>
       <div className="AuthLoginFormCenter">
         <Group mode="card">
           <Header className="AuthLoginHeader">
@@ -149,6 +161,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
           </FormLayout>
         </Group>
       </div>
+      </PullToRefresh>
     </Panel>
   )
 })
