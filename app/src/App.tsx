@@ -27,8 +27,8 @@ import { fetchShop } from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
 
-const APP_WIDTH = 911
-const APP_PADDING = 100
+const VK_IFRAME_APP_WIDTH = 911
+const VK_IFRAME_APP_PADDING = 100
 
 export const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -52,6 +52,24 @@ export const App: FC = () => {
   /** Получаем тип устройства */
   const { isDesktop } = useAdaptivityWithJSMediaQueries()
   const onSwipeBack = useCallback(() => routeNavigator.back(), [routeNavigator])
+
+  if (!isDesktop) {
+    bridge.subscribe((e) => {
+      if (e.detail.type === 'VKWebAppViewHide') {
+        console.log("VKWebAppViewHide");
+      } else if (e.detail.type === 'VKWebAppViewRestore') {
+        console.log("VKWebAppViewRestore");
+      }
+    });
+  } else {
+    document.addEventListener('visibilitychange', function (){
+      if (document.hidden) {
+        console.log("visibilitychange hidden");
+      } else {
+        console.log("visibilitychange shown");
+      }
+    });
+  }
 
   /** Получение данных пользователя */
   useLayoutEffect(() => {
@@ -100,8 +118,8 @@ export const App: FC = () => {
 
       // Обновляем размер страницы
       void bridge.send('VKWebAppResizeWindow', {
-        width: APP_WIDTH,
-        height: viewport_height - APP_PADDING,
+        width: VK_IFRAME_APP_WIDTH,
+        height: viewport_height - VK_IFRAME_APP_PADDING,
       })
     }
 
