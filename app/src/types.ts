@@ -50,3 +50,17 @@ export enum ImageBackgroundAppereance {
   Beige = 'beige',
   Violet = 'violet',
 }
+
+export interface IKeyStringValueStringObject {
+  [key: string]: string
+}
+export interface IFormFieldError {
+  fieldName: string,
+  fieldMessage: string,
+}
+
+export interface IFormErrors {
+  errorMessage: string|null,
+  errorFields: IKeyStringValueStringObject,
+}
+

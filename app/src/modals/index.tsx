@@ -15,7 +15,10 @@ const Modals: React.FC = () => {
     // ModalRoot - контейнер для модальных страниц и карточек
     // activeModal - текущая открытая модальная страница | undefind
     <ModalRoot activeModal={modal}>
-      <FiltersModal onClose={() => routeNavigator.hideModal()} id="filter" />
+      <FiltersModal
+        onClose={() => routeNavigator.hideModal()}
+        id="filter"
+      />
       <OnboardingModal
         onClose={() => routeNavigator.hideModal()}
         id="onboarding"

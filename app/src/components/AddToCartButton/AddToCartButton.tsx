@@ -22,7 +22,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = memo(
     const onButtonClick = useCallback(
       (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.stopPropagation()
-        if (isInCart) void routeNavigator.push(AppRoutePath.ShoppingCart)
+        if (isInCart) void routeNavigator.push(AppRoutePath.PrivateShoppingCart)
         else dispatch(addCartItem(product))
       },
       [product, isInCart, routeNavigator, dispatch]

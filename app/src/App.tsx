@@ -45,8 +45,8 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = !isAuthorized ? AppView.Auth : AppView.Main,
-    panel: activePanel = !isAuthorized ? AppPanel.Login : AppPanel.Home,
+    view: activeView = !isAuthorized ? AppView.Public : AppView.Private,
+    panel: activePanel = !isAuthorized ? AppPanel.PublicLogin : AppPanel.PrivateHome,
   } = useActiveVkuiLocation()
 
   /** Получаем тип устройства */
@@ -60,6 +60,8 @@ export const App: FC = () => {
     async function initUser() {
       // Получаем данные текущего пользователя
       const userData = await bridge.send('VKWebAppGetUserInfo', {})
+
+      console.log('userData', userData)
 
       // Проверяем есть ли он в Storage
       const data = await bridge.send('VKWebAppStorageGet', {
@@ -143,13 +145,13 @@ export const App: FC = () => {
       {!isAuthorized ? (
         <SplitCol>
           <Epic
-            activeStory={AppView.Auth}
+            activeStory={AppView.Public}
           >
             <View
-              nav={AppView.Auth}
-              activePanel={AppPanel.Login}
+              nav={AppView.Public}
+              activePanel={AppPanel.PublicLogin}
             >
-              <AuthLoginForm nav={AppPanel.Login} />
+              <AuthLoginForm nav={AppPanel.PublicLogin} />
             </View>
           </Epic>
         </SplitCol>
@@ -162,12 +164,12 @@ export const App: FC = () => {
             <View
               onSwipeBack={onSwipeBack}
               history={panelsHistory}
-              nav={AppView.Main}
+              nav={AppView.Private}
               activePanel={activePanel}
             >
-              <Store nav={AppPanel.Home} />
-              <ProductInfo nav={AppPanel.ProductInfo} />
-              <ShoppingCart nav={AppPanel.ShoppingCart} />
+              <Store nav={AppPanel.PrivateHome} />
+              <ProductInfo nav={AppPanel.PrivateProductInfo} />
+              <ShoppingCart nav={AppPanel.PrivateShoppingCart} />
             </View>
           </Epic>
         </SplitCol>

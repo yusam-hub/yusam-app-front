@@ -10,34 +10,36 @@ const APP_ROOT = 'app'
 export const INITIAL_URL = '/'
 
 export enum AppView {
-  Auth = 'auth',
-  Main = 'main',
+  Public = 'public',
+  Private = 'main',
 }
 
 export enum AppPanel {
-  Home = 'home',
-  Login = 'login',
-  ProductInfo = 'productInfo',
-  ShoppingCart = 'shoppingCart',
+  PublicLogin = 'login',
+
+  PrivateHome = 'home',
+  PrivateProductInfo = 'productInfo',
+  PrivateShoppingCart = 'shoppingCart',
 }
 
 export enum AppRoutePath {
-  Home = INITIAL_URL + '',
-  Login = INITIAL_URL + 'login',
-  ProductInfo = INITIAL_URL + 'product-info',
-  ShoppingCart = INITIAL_URL + 'shopping-cart',
+  PublicLogin = INITIAL_URL + 'login',
+
+  PrivateHome = INITIAL_URL + '',
+  PrivateProductInfo = INITIAL_URL + 'product-info',
+  PrivateShoppingCart = INITIAL_URL + 'shopping-cart',
 }
 
 /** Настройка типизированной конфигурации маршрутов */
 export const routes = RoutesConfig.create([
   createRoot(APP_ROOT, [
-    createView(AppView.Auth, [
-      createPanel(AppPanel.Login, AppRoutePath.Login, []),
+    createView(AppView.Public, [
+      createPanel(AppPanel.PublicLogin, AppRoutePath.PublicLogin, []),
     ]),
-    createView(AppView.Main, [
-      createPanel(AppPanel.Home, AppRoutePath.Home, []),
-      createPanel(AppPanel.ProductInfo, AppRoutePath.ProductInfo, []),
-      createPanel(AppPanel.ShoppingCart, AppRoutePath.ShoppingCart, []),
+    createView(AppView.Private, [
+      createPanel(AppPanel.PrivateHome, AppRoutePath.PrivateHome, []),
+      createPanel(AppPanel.PrivateProductInfo, AppRoutePath.PrivateProductInfo, []),
+      createPanel(AppPanel.PrivateShoppingCart, AppRoutePath.PrivateShoppingCart, []),
     ]),
   ]),
 ])

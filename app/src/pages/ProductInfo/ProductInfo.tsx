@@ -57,7 +57,7 @@ export const ProductInfo: FC<NavIdProps> = (props) => {
     return isDesktop ? (
       <IconButton
         aria-label='shoppinfCartIcon'
-        onClick={() => routeNavigator.push(AppRoutePath.ShoppingCart)}
+        onClick={() => routeNavigator.push(AppRoutePath.PrivateShoppingCart)}
       >
         <Icon24ShoppingCartOutline />
       </IconButton>

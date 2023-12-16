@@ -25,7 +25,7 @@
     "indent": "off",
     "quotes": "off",
     "semi": "off",
-    "no-empty-function": "warn",
+    "no-empty": "off",
     "no-await-in-loop": "error",
     "no-duplicate-imports": "error",
     "no-self-compare": "error",

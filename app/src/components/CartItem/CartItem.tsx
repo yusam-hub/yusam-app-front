@@ -41,7 +41,7 @@ export const CartItem: FC<OrderProduct> = memo(
     /** При клике переходим на страницу товара */
     const onItemClick = () => {
       const params = `id=${id}&name=${name}&price=${price}&back=${back}`
-      void routeNavigator.push(AppRoutePath.ShoppingCart + `?${params}`)
+      void routeNavigator.push(AppRoutePath.PrivateShoppingCart + `?${params}`)
     }
 
     /** При загрузке изображения убираем класс-заглушку */

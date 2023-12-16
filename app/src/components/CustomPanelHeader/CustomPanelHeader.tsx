@@ -18,7 +18,7 @@ export const CustomPanelHeader: FC<CustomPanelHeaderProps> = memo(
 
     /** Делаем шаг назад в навигации или озвращаемся на стартовую старницу */
     const onHandleClick = () => {
-      if (isFirstPage) routeNavigator.push(AppRoutePath.Home)
+      if (isFirstPage) routeNavigator.push(AppRoutePath.PrivateHome)
       else void routeNavigator.back()
     }
 

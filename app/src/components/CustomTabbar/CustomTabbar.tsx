@@ -17,20 +17,20 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
     const productCount = orderProducts.length
 
     const onPaymantTabbarItemClick = () => {
-      if (activePanel === AppPanel.ShoppingCart) return
-      void routeNavigator.push(AppRoutePath.ShoppingCart)
+      if (activePanel === AppPanel.PrivateShoppingCart) return
+      void routeNavigator.push(AppRoutePath.PrivateShoppingCart)
     }
 
     const onViewingTabbarItemClick = () => {
-      if (activePanel !== AppPanel.ShoppingCart) return
-      void routeNavigator.push(AppRoutePath.Home)
+      if (activePanel !== AppPanel.PrivateShoppingCart) return
+      void routeNavigator.push(AppRoutePath.PrivateHome)
     }
 
     return (
       <Tabbar>
         <TabbarItem
           onClick={onViewingTabbarItemClick}
-          selected={activePanel !== AppPanel.ShoppingCart}
+          selected={activePanel !== AppPanel.PrivateShoppingCart}
           data-story="feed"
           text="Каталог"
         >
@@ -38,7 +38,7 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
         </TabbarItem>
         <TabbarItem
           onClick={onPaymantTabbarItemClick}
-          selected={activePanel === AppPanel.ShoppingCart}
+          selected={activePanel === AppPanel.PrivateShoppingCart}
           data-story="messages"
           indicator={
             productCount ? (

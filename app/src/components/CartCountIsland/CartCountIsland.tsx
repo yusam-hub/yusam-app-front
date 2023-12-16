@@ -31,7 +31,7 @@ export const CartCountIsland: FC = memo(() => {
 
   /** При клике на остров переходим на страницу корзины */
   const onCounterClick = useCallback(() => {
-    void routeNavigator.push(AppRoutePath.ShoppingCart)
+    void routeNavigator.push(AppRoutePath.PrivateShoppingCart)
   }, [routeNavigator])
 
   return (

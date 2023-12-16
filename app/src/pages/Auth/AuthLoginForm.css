@@ -2,8 +2,15 @@
 
 }
 
+.AuthLoginHeader {
+
+}
+
 .AuthLoginFormCenter {
     width: 400px;
     height: max-content;
-    margin:auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: auto;
 }
