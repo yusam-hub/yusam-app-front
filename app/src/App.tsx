@@ -22,7 +22,7 @@ import {
 } from './store/user.reducer'
 import { Modals } from './modals'
 import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
-import { AppPanel, ShopView } from './routes'
+import { AppPanel, AppView } from './routes'
 import { fetchShop } from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
@@ -45,8 +45,8 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = AppPanel.Store,
-    panel: activePanel = ShopView.Main,
+    view: activeView = AppPanel.Home,
+    panel: activePanel = AppView.Main,
   } = useActiveVkuiLocation()
 
   /** Получаем тип устройства */
@@ -145,11 +145,11 @@ export const App: FC = () => {
           <View
             onSwipeBack={onSwipeBack}
             history={panelsHistory}
-            nav={ShopView.Main}
+            nav={AppView.Main}
             activePanel={activePanel}
           >
             <AuthLoginForm nav={AppPanel.Login} />
-            <Store nav={AppPanel.Store} />
+            <Store nav={AppPanel.Home} />
             <ProductInfo nav={AppPanel.ProductInfo} />
             <ShoppingCart nav={AppPanel.ShoppingCart} />
           </View>
