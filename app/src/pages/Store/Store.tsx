@@ -20,6 +20,7 @@ import { ITEMS, SECTIONS } from './techConfig'
 import './Store.css'
 import {selectIsAuthorized} from "../../store/auth.reducer";
 import {MainMenu} from "../../components/MainMenu/MainMenu";
+import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 const MOBILE_LIMIT = 12
 const DESKTOP_LIMIT = 40
@@ -31,6 +32,8 @@ const IMAGE_LOADING_OPTIONS = {
 
 export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
+  const routeNavigator = useRouteNavigator()
+
   const store = useAppSelector(selectStore)
   const filters = useAppSelector(selectFilters)
   const shopName = useAppSelector(selectShopName)
@@ -112,6 +115,7 @@ export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
    */
   useEffect(() => {
     console.log("isAuthorized", isAuthorized)
+    //if (!isAuthorized) routeNavigator.push("/login")
   }, [isAuthorized])
 
   return (
