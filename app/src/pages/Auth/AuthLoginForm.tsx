@@ -19,6 +19,8 @@ import { IFormErrors } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
 import {MessageInfoPopoutWrapper} from "../../popups/Wrapper/MessageInfoPopoutWrapper";
+import {MessageErrorPopoutWrapper} from "../../popups/Wrapper/MessageErrorPopoutWrapper";
+import {MessageConfirmationPopoutWrapper} from "../../popups/Wrapper/MessageConfirmationPopoutWrapper";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
@@ -62,8 +64,11 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
         <Group mode="card">
           <Header className="AuthLoginHeader" aside={<Button mode={"tertiary"} onClick={() => {
             routeNavigator.showPopout(
-              <MessageInfoPopoutWrapper
+              <MessageConfirmationPopoutWrapper
                 message="TEST"
+                onClickPositive={()=>{
+                  void routeNavigator.hidePopout();
+                }}
               />
             );
           }}>Lang</Button>}>

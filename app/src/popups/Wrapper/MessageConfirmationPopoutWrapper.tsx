@@ -13,17 +13,25 @@ import {
     Spacing
 } from "@vkontakte/vkui";
 import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
-import {Icon28InfoCircle} from "@vkontakte/icons";
+import {Icon28HelpCircleOutline, Icon28InfoCircle} from "@vkontakte/icons";
 import {useTranslation} from "react-i18next";
+import {MouseEventHandler} from "react";
+import i18n from "../../i18n";
 
-export interface MessageInfoPopoutWrapperProps extends BasePopoutWrapperProps {
-    message: string
+export interface MessageConfirmationPopoutWrapperProps extends BasePopoutWrapperProps {
+    message: string,
+    buttonPositiveText?: string,
+    buttonNegativeText?: string,
+    onClickPositive: MouseEventHandler
 }
-export const MessageInfoPopoutWrapper = (
+export const MessageConfirmationPopoutWrapper = (
   {
-      message,
-      ...restProps
-  }: MessageInfoPopoutWrapperProps) =>
+    message,
+    buttonPositiveText = i18n.t('BUTTON.YES'),
+    buttonNegativeText = i18n.t('BUTTON.NO'),
+    onClickPositive,
+    ...restProps
+  }: MessageConfirmationPopoutWrapperProps) =>
 {
     const routeNavigator = useRouteNavigator()
     const { t} = useTranslation();
@@ -31,7 +39,7 @@ export const MessageInfoPopoutWrapper = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_INFORMATION')}
+        header={t('MESSAGE.HEADER_CONFIRMATION')}
         useWrapperClick={false}
       >
           <FormLayout>
@@ -40,7 +48,7 @@ export const MessageInfoPopoutWrapper = (
                   <SimpleCell
                     multiline={true}
                     disabled={true}
-                    before={<Icon28InfoCircle />}
+                    before={<Icon28HelpCircleOutline />}
                   >
                       {message}
                   </SimpleCell>
@@ -48,10 +56,13 @@ export const MessageInfoPopoutWrapper = (
               </FormItem>
               <FormItem>
                   <ButtonGroup mode="horizontal" gap="m" stretched align="center">
+                      <Button size="l" appearance="positive" onClick={onClickPositive}>
+                          {buttonPositiveText}
+                      </Button>
                       <Button size="l" appearance="accent" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
-                          {t('BUTTON.OK')}
+                          {buttonNegativeText}
                       </Button>
                   </ButtonGroup>
               </FormItem>
