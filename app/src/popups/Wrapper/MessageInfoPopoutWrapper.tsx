@@ -47,8 +47,8 @@ export const MessageInfoPopoutWrapper = (
                   <Spacing size={10}/>
               </FormItem>
               <FormItem>
-                  <ButtonGroup mode="horizontal" gap="m" stretched align="center">
-                      <Button size="l" appearance="accent" onClick={() => {
+                  <ButtonGroup mode="horizontal" gap="s" stretched align="center">
+                      <Button size="s" appearance="accent" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
                           {t('BUTTON.OK')}

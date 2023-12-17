@@ -55,11 +55,11 @@ export const MessageConfirmationPopoutWrapper = (
                   <Spacing size={10}/>
               </FormItem>
               <FormItem>
-                  <ButtonGroup mode="horizontal" gap="m" stretched align="center">
-                      <Button size="l" appearance="positive" onClick={onClickPositive}>
+                  <ButtonGroup mode="horizontal" gap="s" stretched align="center">
+                      <Button size="s" appearance="positive" onClick={onClickPositive}>
                           {buttonPositiveText}
                       </Button>
-                      <Button size="l" appearance="accent" onClick={() => {
+                      <Button size="s" appearance="accent" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
                           {buttonNegativeText}
