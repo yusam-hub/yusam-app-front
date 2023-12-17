@@ -1,5 +1,5 @@
 import './AuthLoginForm.css'
-import React, {FC, memo, useEffect} from 'react'
+import React, {FC, memo} from 'react'
 import {
   Button, Card,
   FormItem,
@@ -8,19 +8,15 @@ import {
   Group, Header,
   Input,
   NavIdProps,
-  Panel, PopoutWrapper, PullToRefresh, Spacing, Spinner,
-  useAdaptivityWithJSMediaQueries
+  Panel,  PullToRefresh,
 } from '@vkontakte/vkui'
 import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import {IFormErrors, IKeyStringValueStringObject, LocalesEnum} from "../../types";
+import {IFormErrors, LocalesEnum} from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
-import {MessageInfo} from "../../popups/Wrapper/MessageInfo";
-import {MessageError} from "../../popups/Wrapper/MessageError";
-import {MessageConfirmation} from "../../popups/Wrapper/MessageConfirmation";
 import {SelectRadioGroup} from "../../popups/Wrapper/SelectRadioGroup";
 import {useSelector} from "react-redux";
 import {selectAppLocale, setAppLocale} from "../../store/app.reducer";
@@ -34,7 +30,6 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
   const { t} = useTranslation();
-  const { i18n} = useTranslation();
   const appLocale: string = useSelector(selectAppLocale)
   /**
    * LOCAL CONST
@@ -73,12 +68,12 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                   {
                     id: LocalesEnum.EN,
                     title : t('LOCALE_'+LocalesEnum.EN.toUpperCase()),
-                    defaultChecked: i18n.language === LocalesEnum.EN
+                    defaultChecked: appLocale === LocalesEnum.EN
                   },
                   {
                     id: LocalesEnum.RU,
                     title : t('LOCALE_'+LocalesEnum.RU.toUpperCase()),
-                    defaultChecked: i18n.language === LocalesEnum.RU
+                    defaultChecked: appLocale === LocalesEnum.RU
                   },
                 ]}
                 onSelectValue={(value: string)=>{
@@ -88,7 +83,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
               />
             );
           }}>
-            {t('LOCALE_'+i18n.language.toUpperCase())}
+            {t('LOCALE_'+appLocale.toUpperCase())}
           </Button>}>
             <Card
               mode="shadow"
