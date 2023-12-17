@@ -18,6 +18,9 @@ import { AppRoutePath } from "../../routes";
 import { IFormErrors } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
+import {BasePopoutWrapper, BasePopoutWrapperProps} from "../../components/React/Popout/Wrapper/BasePopoutWrapper";
+import {MessageInfoPopoutWrapper} from "../../components/React/Popout/Wrapper/MessageInfoPopoutWrapper";
+
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -58,7 +61,13 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
       }} isFetching={pullToRefreshIsFetching}>
       <div className="AuthLoginFormCenter">
         <Group mode="card">
-          <Header className="AuthLoginHeader">
+          <Header className="AuthLoginHeader" aside={<Button mode={"tertiary"} onClick={() => {
+            routeNavigator.showPopout(
+              <MessageInfoPopoutWrapper
+                message="TEST"
+              />
+            );
+          }}>Lang</Button>}>
             <Card
               mode="shadow"
             >

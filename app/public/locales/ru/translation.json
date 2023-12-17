@@ -2,6 +2,8 @@
   "LOCALE_ID": "ru",
   "LOCALE_EN": "Английский",
   "LOCALE_RU": "Русский",
+  "MESSAGE.HEADER_INFORMATION": "Информация",
+  "FORM.FORM_STATUS_HEADER.ERROR_IN_FORM": "Ошибка в форме",
   "form" : {
     "formStatusHeader": {
       "errorInForm": "Ошибка в форме"
