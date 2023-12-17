@@ -14,12 +14,12 @@ import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import {IFormErrors, LocalesEnum} from "../../types";
+import { IFormErrors, LocalesEnum } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
-import {SelectRadioGroup} from "../../popups/Wrapper/SelectRadioGroup";
-import {useSelector} from "react-redux";
-import {selectAppLocale, setAppLocale} from "../../store/app.reducer";
+import { SelectRadioGroup } from "../../popups/Wrapper/SelectRadioGroup";
+import { useSelector } from "react-redux";
+import { selectAppLocale, setAppLocale } from "../../store/app.reducer";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
