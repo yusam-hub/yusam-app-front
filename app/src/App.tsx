@@ -159,7 +159,7 @@ export const App: FC = () => {
   useEffect(() => {
     if (i18n.language !== appLocale) {
       void i18n.changeLanguage(appLocale)
-      console.log("Locale changed: ", appLocale)
+      //console.log("Locale changed: ", appLocale)
     }
   }, [appLocale]);
 

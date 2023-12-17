@@ -9,7 +9,7 @@ i18n
   .use(languageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    //debug: true,
     fallbackLng: LOCALE_FALLBACK_DEFAULT, //default locale if no locale found for i18n.changeLanguage(appLocale)
     interpolation: {
       escapeValue: false // react already safes from xss
