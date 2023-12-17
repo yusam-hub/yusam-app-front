@@ -1,5 +1,28 @@
 {
   "LOCALE_ID": "ru",
   "LOCALE_EN": "Английский",
-  "LOCALE_RU": "Русский"
+  "LOCALE_RU": "Русский",
+  "form" : {
+    "formStatusHeader": {
+      "errorInForm": "Ошибка в форме"
+    },
+    "field": {
+      "invalidValue": "Неверное значение"
+    }
+  },
+  "AuthLoginForm" : {
+    "header": "Авторизация",
+    "form" : {
+      "formStatusHeader": {
+        "value": "Неверный e-mail/пароль"
+      }
+    },
+    "buttonLogin": "Войти",
+    "fieldEmailTop": "E-mail",
+    "fieldEmailBottom": "Введите e-mail в формате [ name@domain.zone ]",
+    "fieldEmailPlaceHolder": "введите ваш e-mail",
+    "fieldPassTop": "Пароль",
+    "fieldPassBottom": "Пароль может содержать только латинские буквы и цифры",
+    "fieldPassPlaceHolder": "введите ваш пароль"
+  }
 }

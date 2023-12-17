@@ -51,11 +51,6 @@ export enum ImageBackgroundAppereance {
   Violet = 'violet',
 }
 
-export enum LocalesEnum {
-  EN = 'en',
-  RU = 'ru',
-}
-
 export interface IKeyStringValueStringObject {
   [key: string]: string
 }
@@ -67,5 +62,10 @@ export interface IFormFieldError {
 export interface IFormErrors {
   errorMessage: string,
   errorFields: IKeyStringValueStringObject,
+}
+
+export enum LocalesEnum {
+  EN = 'en',
+  RU = 'ru',
 }
 

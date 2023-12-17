@@ -15,11 +15,9 @@ import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import {IFormErrors} from "../../types";
-import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
-import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
-import {selectAppLocale, setAppLocale} from "../../store/app.reducer";
+import { IFormErrors } from "../../types";
+import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
+import { useTranslation } from "react-i18next";
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -42,9 +40,6 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const [ userEmail, setUserEmail] = React.useState('admin')
   const [ userPass, setUserPass] = React.useState('Qwertyu1')
 
-  useEffect(() => {
-    //dispatch(setAppLocale('ru'))
-  }, [dispatch]);
   /**
    * RETURN CONTENT
    */
@@ -67,7 +62,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
             <Card
               mode="shadow"
             >
-              {t('LOCALE_RU')} Авторизация
+              {t('AuthLoginForm.header')}
             </Card>
           </Header>
         </Group>
@@ -75,19 +70,17 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
           <FormLayout>
             {formErrors.errorMessage &&
               (
-                <FormStatus header="Ошибка в форме" mode="error">
+                <FormStatus header={t('form.formStatusHeader.errorInForm')} mode="error">
                   {formErrors.errorMessage}
                 </FormStatus>
               )
             }
             <FormItem
               htmlFor="email"
-              top="E-mail"
+              top={t('AuthLoginForm.fieldEmailTop')}
               status={formErrors.errorFields?.userEmail ? 'error' : 'valid'}
-              bottom={
-                formErrors.errorFields?.userEmail ?? 'Введите e-mail в формате [ name@domain.zone ]'
-              }
               bottomId="email-type"
+              bottom={formErrors.errorFields?.userEmail ??  t('AuthLoginForm.fieldEmailBottom')}
             >
               <Input
                 disabled={controlDisabled}
@@ -95,24 +88,23 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                 id="userEmail"
                 type="email"
                 defaultValue={userEmail}
+                placeholder={t('AuthLoginForm.fieldEmailPlaceHolder')}
                 onChange={(event) => {
                   setUserEmail(event.currentTarget.value);
                 }}
               />
             </FormItem>
             <FormItem
-              top="Пароль"
-              bottomId="userPassDescription"
+              top={t('AuthLoginForm.fieldPassTop')}
               status={formErrors.errorFields?.userPass ? 'error' : 'valid'}
-              bottom={
-                formErrors.errorFields?.userPass ?? 'Пароль может содержать только латинские буквы и цифры.'
-              }
+              bottomId="userPassDescription"
+              bottom={formErrors.errorFields?.userPass ?? t('AuthLoginForm.fieldPassBottom')}
             >
               <Input
                 disabled={controlDisabled}
                 id="userPass"
                 type="password"
-                placeholder="введите пароль"
+                placeholder={t('AuthLoginForm.fieldPassPlaceHolder')}
                 aria-labelledby="userPassDescription"
                 onChange={(event) => {
                   setUserPass(event.currentTarget.value);
@@ -149,10 +141,10 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                       void routeNavigator.hidePopout();
 
                       setFormErrors({
-                        errorMessage: "Неверный логин/пароль",
+                        errorMessage: t('AuthLoginForm.form.formStatusHeader.value'),
                         errorFields: {
-                          'userEmail' : 'Неверное значение',
-                          'userPass' : 'Неверное значение'
+                          'userEmail' : t('form.field.invalidValue'),
+                          'userPass' : t('form.field.invalidValue')
                         },
                       });
 
@@ -161,7 +153,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
                 }}
               >
-                  Войти
+                {t('AuthLoginForm.buttonLogin')}
               </Button>
             </FormItem>
           </FormLayout>

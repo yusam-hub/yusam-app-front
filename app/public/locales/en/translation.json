@@ -1,5 +1,28 @@
 {
   "LOCALE_ID": "en",
   "LOCALE_EN": "English",
-  "LOCALE_RU": "Russian"
+  "LOCALE_RU": "Russian",
+  "form" : {
+    "formStatusHeader": {
+      "errorInForm": "Error in form"
+    },
+    "field": {
+      "invalidValue": "Invalid value"
+    }
+  },
+  "AuthLoginForm" : {
+    "header": "Authorization",
+    "form" : {
+      "formStatusHeader": {
+        "value": "Invalid e-mail/password"
+      }
+    },
+    "buttonLogin": "LogIn",
+    "fieldEmailTop": "E-mail",
+    "fieldEmailBottom": "Enter the e-mail in the format [ name@domain.zone ]",
+    "fieldEmailPlaceHolder": "enter your e-mail here",
+    "fieldPassTop": "Password",
+    "fieldPassBottom": "The password can contain only Latin letters and numbers",
+    "fieldPassPlaceHolder": "enter your password here"
+  }
 }

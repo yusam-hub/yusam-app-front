@@ -1,7 +1,14 @@
-import {Category, ImageBackgroundAppereance, Product, ProductFilter, ShopInfo} from 'src/types'
+import {
+  Category,
+  ImageBackgroundAppereance,
+  Product,
+  ProductFilter,
+  ShopInfo
+} from 'src/types'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as api from 'src/api'
 import { RootState } from '.'
+import {LOCALE_APP_DEFAULT, LOCALE_FALLBACK_DEFAULT} from "../globConsts";
 export interface AppState {
   locale: string
   productInfo: Product
@@ -11,7 +18,8 @@ export interface AppState {
 }
 
 export const appInitialState: AppState = {
-  locale: navigator.language.split('-')[0] || 'en',
+  locale: navigator.language.split('-')[0] || LOCALE_FALLBACK_DEFAULT,
+  //locale: LOCALE_APP_DEFAULT,
   filters: { categoryId: '0' },
   categories: [],
   shopInfo: {
