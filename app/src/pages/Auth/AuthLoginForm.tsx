@@ -8,7 +8,7 @@ import {
   Group, Header,
   Input,
   NavIdProps,
-  Panel,  PullToRefresh,
+  Panel, PullToRefresh, usePlatform,
 } from '@vkontakte/vkui'
 import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
@@ -29,7 +29,8 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
    */
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
-  const { t} = useTranslation();
+  const { t} = useTranslation()
+  const platform = usePlatform()
   const appLocale: string = useSelector(selectAppLocale)
   /**
    * LOCAL CONST

@@ -8,7 +8,7 @@ import {
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as api from 'src/api'
 import { RootState } from '.'
-import {LOCALE_APP_DEFAULT, LOCALE_FALLBACK_DEFAULT} from "../globConsts";
+import {GLOB_LOCALE_APP_DEFAULT, GLOB_LOCALE_FALLBACK_DEFAULT} from "../globConsts";
 export interface AppState {
   locale: string
   productInfo: Product
@@ -18,8 +18,8 @@ export interface AppState {
 }
 
 export const appInitialState: AppState = {
-  locale: navigator.language.split('-')[0] || LOCALE_FALLBACK_DEFAULT,
-  //locale: LOCALE_APP_DEFAULT,
+  locale: navigator.language.split('-')[0] || GLOB_LOCALE_FALLBACK_DEFAULT,
+  //locale: GLOB_LOCALE_APP_DEFAULT,
   filters: { categoryId: '0' },
   categories: [],
   shopInfo: {

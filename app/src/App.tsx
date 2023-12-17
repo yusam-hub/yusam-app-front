@@ -29,6 +29,8 @@ import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
+import {AuthVk} from "./pages/Auth/AuthVk";
+import {glob_app_is_vk} from "./globFuncs";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -42,7 +44,7 @@ export const App: FC = () => {
   /** Возвращает объект с помощью которого можно совершать переходы в навигации */
   const routeNavigator = useRouteNavigator()
   /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
-  const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
+  //const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
   const isAuthorized = useAppSelector(selectIsAuthorized)
 
   /** Получаем текущую позицию */
@@ -82,8 +84,6 @@ export const App: FC = () => {
       // Получаем данные текущего пользователя
       const userData = await bridge.send('VKWebAppGetUserInfo', {})
 
-      console.log('userData', userData)
-
       // Проверяем есть ли он в Storage
       const data = await bridge.send('VKWebAppStorageGet', {
         keys: [userData.id.toString()],
@@ -107,10 +107,10 @@ export const App: FC = () => {
 
   }, [isAuthorized, dispatch])
 
-  /** Растягивание экрана на всю ширину окна для десктопа */
+  /** Растягивание экрана для VKCOM на всю ширину окна для десктопа */
   useEffect(() => {
     /** Callback на изменение размеров страницы */
-    async function iframeResize() {
+    async function iframeResizeForVkCom() {
       // Проверяем, что платформа VK.COM
       if (platform !== Platform.VKCOM) return
 
@@ -126,30 +126,29 @@ export const App: FC = () => {
       })
     }
 
-    void iframeResize()
-    window.addEventListener('resize', iframeResize)
-
-    return () => window.removeEventListener('resize', iframeResize)
+    void iframeResizeForVkCom()
+    window.addEventListener('resize', iframeResizeForVkCom)
+    return () => window.removeEventListener('resize', iframeResizeForVkCom)
 
   }, [platform])
 
   /** Запрос на получение контента магазина */
-  useEffect(() => {
+  /*useEffect(() => {
 
     if (!isAuthorized) return;
 
     dispatch(fetchShop())
 
-  }, [isAuthorized, dispatch])
+  }, [isAuthorized, dispatch])*/
 
   /** Открытие модалки при первом заходе в апп */
-  useEffect(() => {
+  /*useEffect(() => {
 
     if (!isAuthorized) return;
 
     if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
 
-  }, [isAuthorized, onBoardingComplete, routeNavigator])
+  }, [isAuthorized, onBoardingComplete, routeNavigator])*/
 
   /**
    * LOCALE
@@ -184,7 +183,11 @@ export const App: FC = () => {
               nav={AppView.Public}
               activePanel={AppPanel.PublicLogin}
             >
-              <AuthLoginForm nav={AppPanel.PublicLogin} />
+              {glob_app_is_vk(platform) ? (
+                <AuthVk nav={AppPanel.PublicLogin} />
+              ) : (
+                <AuthLoginForm nav={AppPanel.PublicLogin} />
+              )}
             </View>
           </Epic>
         </SplitCol>
