@@ -44,7 +44,7 @@ export const App: FC = () => {
   /** Возвращает объект с помощью которого можно совершать переходы в навигации */
   const routeNavigator = useRouteNavigator()
   /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
-  //const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
+  const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
   const isAuthorized = useAppSelector(selectIsAuthorized)
 
   /** Получаем текущую позицию */
@@ -133,22 +133,22 @@ export const App: FC = () => {
   }, [platform])
 
   /** Запрос на получение контента магазина */
-  /*useEffect(() => {
+  useEffect(() => {
 
     if (!isAuthorized) return;
 
     dispatch(fetchShop())
 
-  }, [isAuthorized, dispatch])*/
+  }, [isAuthorized, dispatch])
 
   /** Открытие модалки при первом заходе в апп */
-  /*useEffect(() => {
+  useEffect(() => {
 
     if (!isAuthorized) return;
 
     if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
 
-  }, [isAuthorized, onBoardingComplete, routeNavigator])*/
+  }, [isAuthorized, onBoardingComplete, routeNavigator])
 
   /**
    * LOCALE
