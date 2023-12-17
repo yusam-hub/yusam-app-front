@@ -15,13 +15,15 @@ import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import { IFormErrors } from "../../types";
+import {IFormErrors, IKeyStringValueStringObject, LocalesEnum} from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
 import {MessageInfo} from "../../popups/Wrapper/MessageInfo";
 import {MessageError} from "../../popups/Wrapper/MessageError";
 import {MessageConfirmation} from "../../popups/Wrapper/MessageConfirmation";
 import {SelectRadioGroup} from "../../popups/Wrapper/SelectRadioGroup";
+import {useSelector} from "react-redux";
+import {selectAppLocale, setAppLocale} from "../../store/app.reducer";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
@@ -32,7 +34,8 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
   const { t} = useTranslation();
-
+  const { i18n} = useTranslation();
+  const appLocale: string = useSelector(selectAppLocale)
   /**
    * LOCAL CONST
    */
@@ -66,13 +69,27 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
           <Header className="AuthLoginHeader" aside={<Button mode={"tertiary"} onClick={() => {
             routeNavigator.showPopout(
               <SelectRadioGroup
-                onSelect={(value: string)=>{
-                  console.log(value);
+                radioItems={[
+                  {
+                    id: LocalesEnum.EN,
+                    title : t('LOCALE_'+LocalesEnum.EN.toUpperCase()),
+                    defaultChecked: i18n.language === LocalesEnum.EN
+                  },
+                  {
+                    id: LocalesEnum.RU,
+                    title : t('LOCALE_'+LocalesEnum.RU.toUpperCase()),
+                    defaultChecked: i18n.language === LocalesEnum.RU
+                  },
+                ]}
+                onSelectValue={(value: string)=>{
+                  dispatch(setAppLocale(value));
                   void routeNavigator.hidePopout();
                 }}
               />
             );
-          }}>Lang</Button>}>
+          }}>
+            {t('LOCALE_'+i18n.language.toUpperCase())}
+          </Button>}>
             <Card
               mode="shadow"
             >

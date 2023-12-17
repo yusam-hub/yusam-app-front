@@ -16,17 +16,26 @@ import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
 import {useTranslation} from "react-i18next";
 import i18n from "../../i18n";
 import {AnyFunction} from "@vkontakte/vkui/src/types";
+import {IKeyStringValueStringObject} from "../../types";
 
+export interface SelectRadioGroupItem {
+    id: string,
+    title: string,
+    description?: string,
+    defaultChecked?: boolean
+}
 export interface SelectRadioGroupProps extends BasePopoutWrapperProps {
     buttonPositiveText?: string,
     buttonNegativeText?: string,
-    onSelect: AnyFunction
+    radioItems: SelectRadioGroupItem[],
+    onSelectValue: AnyFunction
 }
 export const SelectRadioGroup = (
   {
     buttonPositiveText = i18n.t('BUTTON.OK'),
     buttonNegativeText = i18n.t('BUTTON.CANCEL'),
-      onSelect,
+    onSelectValue,
+    radioItems,
     ...restProps
   }: SelectRadioGroupProps) =>
 {
@@ -34,9 +43,9 @@ export const SelectRadioGroup = (
     const { t} = useTranslation();
 
     const radioClickHandler = (value: string) => {
-        console.log("event.name", value);
-        onSelect(value);
+        onSelectValue(value);
     }
+
     return (
       <BasePopoutWrapper
         {...restProps}
@@ -46,31 +55,27 @@ export const SelectRadioGroup = (
           <FormLayout>
               <FormItem>
                   <Spacing size={10}/>
+
                   <RadioGroup>
-                      <Radio
-                         name="selectRadio"
-                         value="title1"
-                         disabled={false}
-                         defaultChecked={false}
-                         description="Description 1"
-                         onClick={(event) => {
-                             radioClickHandler(event.currentTarget.value);
-                         }}
-                      >
-                          Title 1
-                      </Radio>
-                      <Radio
-                        name="selectRadio"
-                        value="title2"
-                        disabled={false}
-                        defaultChecked={false}
-                        description="Description 2"
-                        onClick={(event) => {
-                            radioClickHandler(event.currentTarget.value);
-                        }}
-                      >
-                          Title 2
-                      </Radio>
+                      {
+                          radioItems.map((item, i) => {
+                              return (
+                                <Radio
+                                  key={item.id}
+                                  name="selectRadio"
+                                  value={item.id}
+                                  disabled={false}
+                                  defaultChecked={item?.defaultChecked}
+                                  description={item?.description}
+                                  onClick={(event) => {
+                                      radioClickHandler(event.currentTarget.value);
+                                  }}
+                                >
+                                    {item.title}
+                                </Radio>
+                              )
+                          })
+                      }
                   </RadioGroup>
                   <Spacing size={10}/>
               </FormItem>
