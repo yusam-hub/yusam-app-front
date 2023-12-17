@@ -18,9 +18,10 @@ import { AppRoutePath } from "../../routes";
 import { IFormErrors } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
-import {MessageInfoPopoutWrapper} from "../../popups/Wrapper/MessageInfoPopoutWrapper";
-import {MessageErrorPopoutWrapper} from "../../popups/Wrapper/MessageErrorPopoutWrapper";
-import {MessageConfirmationPopoutWrapper} from "../../popups/Wrapper/MessageConfirmationPopoutWrapper";
+import {MessageInfo} from "../../popups/Wrapper/MessageInfo";
+import {MessageError} from "../../popups/Wrapper/MessageError";
+import {MessageConfirmation} from "../../popups/Wrapper/MessageConfirmation";
+import {SelectRadioGroup} from "../../popups/Wrapper/SelectRadioGroup";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
@@ -64,9 +65,9 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
         <Group mode="card">
           <Header className="AuthLoginHeader" aside={<Button mode={"tertiary"} onClick={() => {
             routeNavigator.showPopout(
-              <MessageConfirmationPopoutWrapper
-                message="TEST"
-                onClickPositive={()=>{
+              <SelectRadioGroup
+                onSelect={(value: string)=>{
+                  console.log(value);
                   void routeNavigator.hidePopout();
                 }}
               />

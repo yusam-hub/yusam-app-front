@@ -13,17 +13,17 @@ import {
     Spacing
 } from "@vkontakte/vkui";
 import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
-import {Icon28InfoCircle} from "@vkontakte/icons";
+import {Icon28DismissSubstract, Icon28InfoCircle} from "@vkontakte/icons";
 import {useTranslation} from "react-i18next";
 
-export interface MessageInfoPopoutWrapperProps extends BasePopoutWrapperProps {
+export interface MessageErrorProps extends BasePopoutWrapperProps {
     message: string
 }
-export const MessageInfoPopoutWrapper = (
+export const MessageError = (
   {
       message,
       ...restProps
-  }: MessageInfoPopoutWrapperProps) =>
+  }: MessageErrorProps) =>
 {
     const routeNavigator = useRouteNavigator()
     const { t} = useTranslation();
@@ -31,7 +31,7 @@ export const MessageInfoPopoutWrapper = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_INFORMATION')}
+        header={t('MESSAGE.HEADER_ERROR')}
         useWrapperClick={false}
       >
           <FormLayout>
@@ -40,7 +40,7 @@ export const MessageInfoPopoutWrapper = (
                   <SimpleCell
                     multiline={true}
                     disabled={true}
-                    before={<Icon28InfoCircle />}
+                    before={<Icon28DismissSubstract />}
                   >
                       {message}
                   </SimpleCell>
@@ -48,7 +48,7 @@ export const MessageInfoPopoutWrapper = (
               </FormItem>
               <FormItem>
                   <ButtonGroup mode="horizontal" gap="s" stretched align="center">
-                      <Button size="s" appearance="accent" onClick={() => {
+                      <Button size="s" appearance="negative" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
                           {t('BUTTON.OK')}
