@@ -18,8 +18,7 @@ import { AppRoutePath } from "../../routes";
 import { IFormErrors } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
-import {BasePopoutWrapper, BasePopoutWrapperProps} from "../../components/React/Popout/Wrapper/BasePopoutWrapper";
-import {MessageInfoPopoutWrapper} from "../../components/React/Popout/Wrapper/MessageInfoPopoutWrapper";
+import {MessageInfoPopoutWrapper} from "../../popups/Wrapper/MessageInfoPopoutWrapper";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
