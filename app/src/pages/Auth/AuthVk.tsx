@@ -1,5 +1,5 @@
 import './AuthVk.css'
-import React, {FC, memo, useEffect, useLayoutEffect} from 'react'
+import React, {FC, memo, useEffect, useLayoutEffect, useState} from 'react'
 import {
   Card,
   NavIdProps,
@@ -12,8 +12,9 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectAppLocale, setAppLocale } from "../../store/app.reducer";
 import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
-import {selectIsAuthorized} from "../../store/auth.reducer";
-import bridge from "@vkontakte/vk-bridge";
+import {selectIsAuthorized, setIsAuthorized} from "../../store/auth.reducer";
+import bridge, {parseURLSearchParamsForGetLaunchParams} from "@vkontakte/vk-bridge";
+import {AppRoutePath} from "../../routes";
 
 export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -25,24 +26,35 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
   const { t} = useTranslation()
   const platform = usePlatform()
   const appLocale: string = useSelector(selectAppLocale)
-  const isAuthorized = useAppSelector(selectIsAuthorized)
+  const [ userInfoLoadingStatus, setUserInfoLoadingStatus] = useState(0)
 
+  async function getUserInfo() {
+    setUserInfoLoadingStatus(1);
+    const vkUserInfo = await bridge.send('VKWebAppGetUserInfo', {})
+    console.log("vkUserInfo", vkUserInfo);
+    setUserInfoLoadingStatus(2);
+  }
 
+  useEffect(() => {
 
-  useLayoutEffect(() => {
-    if (isAuthorized) return;
+    if (userInfoLoadingStatus === 0) {
 
-    async function getUserInfo() {
+      void getUserInfo();
 
-      const vkUserInfo = await bridge.send('VKWebAppGetUserInfo', {})
-      console.log("vkUserInfo",vkUserInfo);
-      void routeNavigator.hidePopout();
+    } else if(userInfoLoadingStatus === 2) {
+
+      setUserInfoLoadingStatus(3);
+
+      setTimeout(function(){
+        dispatch(setIsAuthorized(true))
+        void routeNavigator.push(AppRoutePath.PrivateHome);
+      }, 2000);
+
     }
 
-    void getUserInfo();
+  }, [userInfoLoadingStatus]);
 
-  }, []);
-   /**
+  /**
    * RETURN CONTENT
    */
   return (
