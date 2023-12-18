@@ -4,7 +4,7 @@ import { Button, ModalCard, NavIdProps } from '@vkontakte/vkui'
 import { useAppSelector } from 'src/store'
 
 /** Приветственная модальная страница */
-const OnboardingModal: React.FC<NavIdProps & { onClose: () => void }> = (
+const WelcomeModal: React.FC<NavIdProps & { onClose: () => void }> = (
   props
 ) => {
   const { name } = useAppSelector((state) => state.user)
@@ -28,4 +28,4 @@ const OnboardingModal: React.FC<NavIdProps & { onClose: () => void }> = (
   )
 }
 
-export { OnboardingModal }
+export { WelcomeModal }

@@ -16,8 +16,8 @@ import {
 } from '@vkontakte/vk-mini-apps-router'
 import { useAppDispatch, useAppSelector } from './store'
 import {
-  selectOnBoardingComplete,
-  setOnboardingComplete,
+  selectOnWelcomeComplete,
+  setOnWelcomeComplete,
   setUserData,
 } from './store/user.reducer'
 import { Modals } from './modals'
@@ -45,7 +45,7 @@ export const App: FC = () => {
   /** Возвращает объект с помощью которого можно совершать переходы в навигации */
   const routeNavigator = useRouteNavigator()
   /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
-  const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
+  const onWelcomeComplete = useAppSelector(selectOnWelcomeComplete)
   const isAuthorized = useAppSelector(selectIsAuthorized)
   const appIsVkOpened = useAppSelector(selectAppIsVkOpened)
 
@@ -97,7 +97,7 @@ export const App: FC = () => {
       // Если не сохранен, то сохраняем в store и показываем приветственную модалку
       else if (userData) {
         dispatch(setUserData({ name: userData.first_name, id: userData.id }))
-        dispatch(setOnboardingComplete(false))
+        dispatch(setOnWelcomeComplete(false))
         void bridge.send('VKWebAppStorageSet', {
           key: userData.id.toString(),
           value: userData.first_name,
@@ -148,9 +148,9 @@ export const App: FC = () => {
 
     if (!isAuthorized) return;
 
-    if (!onBoardingComplete) void routeNavigator.showModal('onboarding')
+    if (!onWelcomeComplete) void routeNavigator.showModal('welcome')
 
-  }, [isAuthorized, onBoardingComplete, routeNavigator])
+  }, [isAuthorized, onWelcomeComplete, routeNavigator])
 
   /**
    * LOCALE

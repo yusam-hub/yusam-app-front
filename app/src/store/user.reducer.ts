@@ -4,13 +4,13 @@ import { RootState } from '.'
 export interface UserState {
   id?: number,
   name: string
-  onBoardingComplete: boolean
+  onWelcomeComplete: boolean
 }
 
 const initialState: UserState = {
   id: undefined,
   name: '',
-  onBoardingComplete: true,
+  onWelcomeComplete: true,
 }
 
 const userSlice = createSlice({
@@ -22,8 +22,8 @@ const userSlice = createSlice({
       state.id = action.payload.id
     },
 
-    setOnboardingComplete(state, action: PayloadAction<boolean>) {
-      state.onBoardingComplete = action.payload
+    setOnWelcomeComplete(state, action: PayloadAction<boolean>) {
+      state.onWelcomeComplete = action.payload
     },
   },
 })
@@ -31,6 +31,9 @@ const userSlice = createSlice({
 const { reducer } = userSlice
 export { reducer as userReducer }
 
-export const selectOnBoardingComplete = (state: RootState) => state.user.onBoardingComplete
+export const selectOnWelcomeComplete = (state: RootState) => state.user.onWelcomeComplete
 
-export const { setUserData, setOnboardingComplete } = userSlice.actions
+export const { 
+  setUserData, 
+  setOnWelcomeComplete 
+} = userSlice.actions

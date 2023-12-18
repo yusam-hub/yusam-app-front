@@ -5,7 +5,7 @@ import {
   useActiveVkuiLocation,
   useRouteNavigator,
 } from '@vkontakte/vk-mini-apps-router'
-import { OnboardingModal } from './OnboardingModal'
+import { WelcomeModal } from './WelcomeModal'
 
 const Modals: React.FC = () => {
   const { modal } = useActiveVkuiLocation()
@@ -19,9 +19,9 @@ const Modals: React.FC = () => {
         onClose={() => routeNavigator.hideModal()}
         id="filter"
       />
-      <OnboardingModal
+      <WelcomeModal
         onClose={() => routeNavigator.hideModal()}
-        id="onboarding"
+        id="welcome"
       />
     </ModalRoot>
   )
