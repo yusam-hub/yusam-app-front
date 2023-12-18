@@ -14,7 +14,7 @@ import {
   setShoppingCatalogScrollPosition,
 } from '../../store/shoppingCatalog.reducer'
 import { imageIntersectionObserver, findImage } from 'src/utils'
-import { selectFilters, selectShopName } from 'src/store/shop.reducer'
+import {fetchShop, selectFilters, selectShopName} from 'src/store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './ShoppingCatalog.css'
@@ -47,11 +47,17 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
   const $storeContainer = useRef<HTMLDivElement>(null)
 
   const onWelcomeComplete = useAppSelector(selectOnWelcomeComplete)
-  const isAuthorized = useAppSelector(selectIsAuthorized)
   const routeNavigator = useRouteNavigator()
   const onHandleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
     scrollPosition.current = e.currentTarget.scrollTop
   }
+
+  /** Запрос на получение контента магазина */
+  useEffect(() => {
+
+    dispatch(fetchShop())
+
+  }, [dispatch])
 
   /** При изменени фильтров делаем запрос на получение данных и создаем observer для загрузки изображений */
   useLayoutEffect(() => {
@@ -111,14 +117,10 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
       .forEach(el => observer.current?.observe(el))
   }, [shoppingCatalog.products, limit])
 
-  /** Открытие модалки при первом заходе в апп */
+  /** Открытие модалки при первом заходе в shop */
   useEffect(() => {
-
-    if (!isAuthorized) return;
-
     if (!onWelcomeComplete) void routeNavigator.showModal('welcome')
-
-  }, [isAuthorized, onWelcomeComplete, routeNavigator])
+  }, [onWelcomeComplete, routeNavigator])
 
 
   return (

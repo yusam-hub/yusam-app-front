@@ -129,17 +129,6 @@ export const App: FC = () => {
 
   }, [platform])
 
-  /** Запрос на получение контента магазина */
-  useEffect(() => {
-
-    if (!isAuthorized) return;
-
-    dispatch(fetchShop())
-
-  }, [isAuthorized, dispatch])
-
-
-
   /**
    * LOCALE
    */
