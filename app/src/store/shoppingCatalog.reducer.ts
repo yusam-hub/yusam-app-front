@@ -3,13 +3,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 import * as api from 'src/api'
 
-export interface StoreState {
+export interface ShoppingCatalogState {
   products: ProductPreview[]
   scrollPosition: number
   isStoreFetching: boolean
 }
 
-export const storeInitialState: StoreState = {
+export const storeInitialState: ShoppingCatalogState = {
   products: [],
   scrollPosition: 0,
   isStoreFetching: true,
@@ -37,11 +37,11 @@ export const fetchFilteredProducts = createAsyncThunk(
   }
 )
 
-const storeSlice = createSlice({
+const ShoppingCatalogSlice = createSlice({
   name: 'store',
   initialState: storeInitialState,
   reducers: {
-    setStoreScrollPosition(state, action: PayloadAction<number>) {
+    setShoppingCatalogScrollPosition(state, action: PayloadAction<number>) {
       state.scrollPosition = action.payload
     },
   },
@@ -59,9 +59,9 @@ const storeSlice = createSlice({
   },
 })
 
-const { reducer } = storeSlice
-export { reducer as storeReducer }
+const { reducer } = ShoppingCatalogSlice
+export { reducer as shoppingCatalogReducer }
 
-export const selectStore = (state: RootState) => state.store
+export const selectShoppingCatalog = (state: RootState) => state.shoppingCatalog
 
-export const { setStoreScrollPosition } = storeSlice.actions
+export const { setShoppingCatalogScrollPosition } = ShoppingCatalogSlice.actions

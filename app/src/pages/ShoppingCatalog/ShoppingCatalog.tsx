@@ -10,9 +10,9 @@ import { CartCountIsland, Filters, Products, TechInfo } from 'src/components'
 import { useAppDispatch, useAppSelector } from 'src/store'
 import {
   fetchFilteredProducts,
-  selectStore,
-  setStoreScrollPosition,
-} from 'src/store/store.reducer'
+  selectShoppingCatalog,
+  setShoppingCatalogScrollPosition,
+} from '../../store/shoppingCatalog.reducer'
 import { imageIntersectionObserver, findImage } from 'src/utils'
 import { selectFilters, selectShopName } from 'src/store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
@@ -30,7 +30,7 @@ const IMAGE_LOADING_OPTIONS = {
 export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
 
-  const store = useAppSelector(selectStore)
+  const shoppingCatalog = useAppSelector(selectShoppingCatalog)
   const filters = useAppSelector(selectFilters)
   const shopName = useAppSelector(selectShopName)
 
@@ -38,9 +38,9 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
   const limit = isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT
 
   const scrollPosition = useRef(0)
-  const isSavedContent = useRef(store.products.length > 0)
+  const isSavedContent = useRef(shoppingCatalog.products.length > 0)
   const observer = useRef<IntersectionObserver | null>(null)
-  const lastLoadItemIndex = useRef(store.products.length || limit)
+  const lastLoadItemIndex = useRef(shoppingCatalog.products.length || limit)
   const $storeContainer = useRef<HTMLDivElement>(null)
 
   const onHandleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -86,24 +86,24 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
     isSavedContent.current = false
 
     return () => {
-      dispatch(setStoreScrollPosition(scrollPosition.current))
+      dispatch(setShoppingCatalogScrollPosition(scrollPosition.current))
     }
   }, [filters, limit, dispatch])
 
   /** Восстановление скролла */
   useLayoutEffect(() => {
     if (!$storeContainer.current) return
-    $storeContainer.current.scrollTop = store.scrollPosition
-    scrollPosition.current = store.scrollPosition
-  }, [store.scrollPosition, limit])
+    $storeContainer.current.scrollTop = shoppingCatalog.scrollPosition
+    scrollPosition.current = shoppingCatalog.scrollPosition
+  }, [shoppingCatalog.scrollPosition, limit])
 
   /** Начинаем следить за новыми загруженными элементами */
   useLayoutEffect(() => {
-    lastLoadItemIndex.current = store.products.length || limit
+    lastLoadItemIndex.current = shoppingCatalog.products.length || limit
     document
       .querySelectorAll('.ProductCard')
       .forEach(el => observer.current?.observe(el))
-  }, [store.products, limit])
+  }, [shoppingCatalog.products, limit])
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
@@ -115,7 +115,7 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
       )}
       <div ref={$storeContainer} className={'Store'} onScroll={onHandleScroll}>
 
-        <Products products={store.products} fetching={store.isStoreFetching} />
+        <Products products={shoppingCatalog.products} fetching={shoppingCatalog.isStoreFetching} />
 
         {isDesktop && (
           <div className="Sidebar">
