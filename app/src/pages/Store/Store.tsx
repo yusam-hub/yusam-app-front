@@ -14,7 +14,7 @@ import {
   setStoreScrollPosition,
 } from 'src/store/store.reducer'
 import { imageIntersectionObserver, findImage } from 'src/utils'
-import { selectFilters, selectShopName } from 'src/store/app.reducer'
+import { selectFilters, selectShopName } from 'src/store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './Store.css'

@@ -11,7 +11,7 @@ import { ProductCard } from 'src/components'
 import { ProductPreview } from 'src/types'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppSelector } from 'src/store'
-import { selectShopLogo, selectShopName } from 'src/store/app.reducer'
+import { selectShopLogo, selectShopName } from 'src/store/shop.reducer'
 
 import './Products.css'
 

@@ -5,7 +5,7 @@ import {
   selectPriceTo,
   selectPriceFrom,
   setFiltersPriceRange,
-} from 'src/store/app.reducer'
+} from 'src/store/shop.reducer'
 import {
   Div,
   Group,

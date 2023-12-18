@@ -20,7 +20,7 @@ import {
   TechInfo,
 } from 'src/components'
 import { Icon24ShoppingCartOutline } from '@vkontakte/icons'
-import { fetchProductInfo, selectProductInfo } from 'src/store/app.reducer'
+import { fetchProductInfo, selectProductInfo } from 'src/store/shop.reducer'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppDispatch, useAppSelector } from 'src/store'
 import { ITEMS, SECTIONS } from './techConfig'

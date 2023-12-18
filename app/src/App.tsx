@@ -23,7 +23,8 @@ import {
 import { Modals } from './modals'
 import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanel, AppView } from './routes'
-import {fetchShop, selectAppIsVkOpened, selectAppLocale} from './store/app.reducer'
+import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
+import { fetchShop } from './store/shop.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';

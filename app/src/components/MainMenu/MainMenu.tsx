@@ -11,7 +11,7 @@ import {
   useAdaptivityWithJSMediaQueries
 } from "@vkontakte/vkui";
 import {useAppSelector} from "../../store";
-import {selectShopName} from "../../store/app.reducer";
+import {selectShopName} from "../../store/shop.reducer";
 import {Icon24Attach} from "@vkontakte/icons";
 
 export const MainMenu: FC = memo(() => {

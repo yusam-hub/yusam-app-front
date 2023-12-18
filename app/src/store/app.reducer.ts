@@ -1,59 +1,16 @@
-import {
-  Category,
-  ImageBackgroundAppereance,
-  Product,
-  ProductFilter,
-  ShopInfo
-} from 'src/types'
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import * as api from 'src/api'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
-import {GLOB_LOCALE_APP_DEFAULT, GLOB_LOCALE_FALLBACK_DEFAULT} from "../globConsts";
-import {glob_app_is_vk} from "../globFuncs";
+import { GLOB_LOCALE_FALLBACK_DEFAULT} from "../globConsts";
+import { glob_app_is_vk } from "../globFuncs";
 export interface AppState {
   locale: string
   isVkOpened: boolean
-  productInfo: Product
-  categories: Category[]
-  shopInfo: ShopInfo
-  filters: ProductFilter
 }
 
 export const appInitialState: AppState = {
   locale: navigator.language.split('-')[0] || GLOB_LOCALE_FALLBACK_DEFAULT,
   isVkOpened: glob_app_is_vk(),
-  //locale: GLOB_LOCALE_APP_DEFAULT,
-  filters: { categoryId: '0' },
-  categories: [],
-  shopInfo: {
-    logo: '',
-    name: '',
-  },
-  productInfo: {
-    id: -1,
-    price: 0,
-    name: '',
-    preview: '',
-    back: ImageBackgroundAppereance.Grey,
-    photos: [],
-    categoryId: [],
-    description: '',
-    maxAvailable: 0,
-  },
 }
-
-/** Запрос на получения контента магазина через асинхронный action: fetchShop */
-export const fetchShop = createAsyncThunk('app/fetchShop', async function () {
-  return await api.user.getInitialData()
-})
-
-/** Запрос на получения информации о товаре через асинхронный action: fetchproductInfo */
-export const fetchProductInfo = createAsyncThunk(
-  'app/fetchproductInfo',
-  async function ({ productId }: { productId: number }) {
-    return (await api.products.getProductInfo({ productId }))
-  }
-)
 
 const appSlice = createSlice({
   name: 'app',
@@ -62,52 +19,15 @@ const appSlice = createSlice({
     setAppLocale(state, action: PayloadAction<string>) {
       state.locale = action.payload
     },
-    setProductFilters(state, action: PayloadAction<ProductFilter>) {
-      state.filters = action.payload
-    },
-    setFiltersCategory(state, action: PayloadAction<string>) {
-      state.filters.categoryId = action.payload
-    },
-    setFiltersQuery(state, action: PayloadAction<string>) {
-      state.filters.query = action.payload
-    },
-    setFiltersPriceRange(
-      state,
-      action: PayloadAction<{ priceFrom?: number; priceTo?: number }>
-    ) {
-      state.filters.priceFrom = action.payload.priceFrom
-      state.filters.priceTo = action.payload.priceTo
-    },
-  },
-  extraReducers: (builder) => {
-    /** Добавление обработчика на успешное завершение action: fetchShop */
-    builder.addCase(fetchShop.fulfilled, (state, action) => {
-      state.shopInfo = action.payload.shopInfo
-      state.categories = action.payload.categories
-    }),
-    builder.addCase(fetchProductInfo.fulfilled, (state, action) => {
-      state.productInfo = action.payload
-    })
   },
 })
 
 const { reducer } = appSlice
 export { reducer as appReducer }
 
-export const selectProductInfo = (state: RootState) => state.app.productInfo
-export const selectCategories = (state: RootState) => state.app.categories
-export const selectPriceFrom = (state: RootState) => state.app.filters.priceFrom
-export const selectShopLogo = (state: RootState) => state.app.shopInfo.logo
-export const selectShopName = (state: RootState) => state.app.shopInfo.name
-export const selectFilters = (state: RootState) => state.app.filters
-export const selectPriceTo = (state: RootState) => state.app.filters.priceTo
 export const selectAppLocale = (state: RootState) => state.app.locale
 export const selectAppIsVkOpened = (state: RootState) => state.app.isVkOpened
 
 export const {
   setAppLocale,
-  setFiltersPriceRange,
-  setFiltersCategory,
-  setProductFilters,
-  setFiltersQuery,
 } = appSlice.actions
