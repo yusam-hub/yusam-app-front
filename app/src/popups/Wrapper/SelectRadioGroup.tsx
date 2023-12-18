@@ -49,7 +49,7 @@ export const SelectRadioGroup = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_SELECT')}
+        header={t('MESSAGE_HEADER_SELECT')}
         useWrapperClick={false}
       >
           <FormLayout>

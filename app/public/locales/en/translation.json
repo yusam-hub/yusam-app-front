@@ -2,27 +2,25 @@
   "LOCALE_ID": "en",
   "LOCALE_EN": "English",
   "LOCALE_RU": "Russian",
-  "form" : {
-    "formStatusHeader": {
-      "errorInForm": "Error in form"
-    },
-    "field": {
-      "invalidValue": "Invalid value"
-    }
-  },
-  "AuthLoginForm" : {
-    "header": "Authorization",
-    "form" : {
-      "formStatusHeader": {
-        "value": "Invalid e-mail/password"
-      }
-    },
-    "buttonLogin": "LogIn",
-    "fieldEmailTop": "E-mail",
-    "fieldEmailBottom": "Enter the e-mail in the format [ name@domain.zone ]",
-    "fieldEmailPlaceHolder": "enter your e-mail here",
-    "fieldPassTop": "Password",
-    "fieldPassBottom": "The password can contain only Latin letters and numbers",
-    "fieldPassPlaceHolder": "enter your password here"
-  }
+  "LOCALE_NAME": "Language",
+
+  "MESSAGE_HEADER_INFORMATION": "Information",
+  "MESSAGE_HEADER_CONFIRMATION": "Confirmation",
+  "MESSAGE_HEADER_ERROR": "Error",
+  "MESSAGE_HEADER_SELECT": "Select",
+
+  "COMMON_ERROR_IN_FORM": "Form errors",
+  "COMMON_INVALID_VALUE": "Invalid value",
+  "COMMON_BUTTON_LOGIN": "Login",
+
+  "AUTH_LOGIN_FORM_HEADER": "Authorization",
+  "AUTH_LOGIN_FORM_HEADER_ERROR_VALUE": "Invalid e-mail/password",
+
+  "FIELD_EMAIL": "E-mail",
+  "FIELD_EMAIL_HELPER": "Enter e-mail in format like [ name@domain.zone ]",
+  "FIELD_EMAIL_PLACEHOLDER": "enter your e-mail here",
+
+  "FIELD_PASS": "Password",
+  "FIELD_PASS_HELPER": "The password can contain only Latin letters and numbers",
+  "FIELD_PASS_PLACEHOLDER": "enter your password here"
 }

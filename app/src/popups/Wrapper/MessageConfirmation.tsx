@@ -27,8 +27,8 @@ export interface MessageConfirmationProps extends BasePopoutWrapperProps {
 export const MessageConfirmation = (
   {
     message,
-    buttonPositiveText = i18n.t('BUTTON.YES'),
-    buttonNegativeText = i18n.t('BUTTON.NO'),
+    buttonPositiveText = i18n.t('BUTTON_YES'),
+    buttonNegativeText = i18n.t('BUTTON_NO'),
     onClickPositive,
     ...restProps
   }: MessageConfirmationProps) =>
@@ -39,7 +39,7 @@ export const MessageConfirmation = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_CONFIRMATION')}
+        header={t('MESSAGE_HEADER_CONFIRMATION')}
         useWrapperClick={false}
       >
           <FormLayout>

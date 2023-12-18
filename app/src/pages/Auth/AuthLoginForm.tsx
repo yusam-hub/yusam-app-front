@@ -89,12 +89,12 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
               />
             );
           }}>
-            {t('LOCALE_'+appLocale.toUpperCase())}
+            {t('LOCALE_NAME')}
           </Button>}>
             <Card
               mode="shadow"
             >
-              {t('AuthLoginForm.header')}
+              {t('AUTH_LOGIN_FORM_HEADER')}
             </Card>
           </Header>
         </Group>
@@ -102,17 +102,17 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
           <FormLayout>
             {formErrors.errorMessage &&
               (
-                <FormStatus header={t('form.formStatusHeader.errorInForm')} mode="error">
-                  {formErrors.errorMessage}
+                <FormStatus header={t('COMMON_ERROR_IN_FORM')} mode="error">
+                  {t(formErrors.errorMessage)}
                 </FormStatus>
               )
             }
             <FormItem
               htmlFor="email"
-              top={t('AuthLoginForm.fieldEmailTop')}
+              top={t('FIELD_EMAIL')}
               status={formErrors.errorFields?.userEmail ? 'error' : 'valid'}
               bottomId="email-type"
-              bottom={formErrors.errorFields?.userEmail ??  t('AuthLoginForm.fieldEmailBottom')}
+              bottom={formErrors.errorFields?.userEmail ? t(formErrors.errorFields.userEmail) : t('FIELD_EMAIL_HELPER')}
             >
               <Input
                 disabled={controlDisabled}
@@ -120,23 +120,23 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                 id="userEmail"
                 type="email"
                 defaultValue={userEmail}
-                placeholder={t('AuthLoginForm.fieldEmailPlaceHolder')}
+                placeholder={t('FIELD_EMAIL_PLACEHOLDER')}
                 onChange={(event) => {
                   setUserEmail(event.currentTarget.value);
                 }}
               />
             </FormItem>
             <FormItem
-              top={t('AuthLoginForm.fieldPassTop')}
+              top={t('FIELD_PASS')}
               status={formErrors.errorFields?.userPass ? 'error' : 'valid'}
               bottomId="userPassDescription"
-              bottom={formErrors.errorFields?.userPass ?? t('AuthLoginForm.fieldPassBottom')}
+              bottom={formErrors.errorFields?.userPass ? t(formErrors.errorFields.userPass) : t('FIELD_PASS_HELPER')}
             >
               <Input
                 disabled={controlDisabled}
                 id="userPass"
                 type="password"
-                placeholder={t('AuthLoginForm.fieldPassPlaceHolder')}
+                placeholder={t('FIELD_PASS_PLACEHOLDER')}
                 aria-labelledby="userPassDescription"
                 onChange={(event) => {
                   setUserPass(event.currentTarget.value);
@@ -157,7 +157,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                   setControlDisabled(true);
 
                   setFormErrors({
-                    errorMessage: '',
+                    errorMessage: undefined,
                     errorFields: {},
                   });
 
@@ -173,10 +173,10 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                       void routeNavigator.hidePopout();
 
                       setFormErrors({
-                        errorMessage: t('AuthLoginForm.form.formStatusHeader.value'),
+                        errorMessage: 'AUTH_LOGIN_FORM_HEADER_ERROR_VALUE',
                         errorFields: {
-                          'userEmail' : t('form.field.invalidValue'),
-                          'userPass' : t('form.field.invalidValue')
+                          'userEmail' : 'COMMON_INVALID_VALUE',
+                          'userPass' : 'COMMON_INVALID_VALUE'
                         },
                       });
 
@@ -185,7 +185,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
 
                 }}
               >
-                {t('AuthLoginForm.buttonLogin')}
+                {t('COMMON_BUTTON_LOGIN')}
               </Button>
             </FormItem>
           </FormLayout>

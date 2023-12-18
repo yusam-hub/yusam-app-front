@@ -60,7 +60,7 @@ export interface IFormFieldError {
 }
 
 export interface IFormErrors {
-  errorMessage: string,
+  errorMessage?: string | undefined,
   errorFields: IKeyStringValueStringObject,
 }
 

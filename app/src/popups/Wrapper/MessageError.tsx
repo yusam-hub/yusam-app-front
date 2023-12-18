@@ -31,7 +31,7 @@ export const MessageError = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_ERROR')}
+        header={t('MESSAGE_HEADER_ERROR')}
         useWrapperClick={false}
       >
           <FormLayout>
@@ -51,7 +51,7 @@ export const MessageError = (
                       <Button size="s" appearance="negative" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
-                          {t('BUTTON.OK')}
+                          {t('BUTTON_OK')}
                       </Button>
                   </ButtonGroup>
               </FormItem>

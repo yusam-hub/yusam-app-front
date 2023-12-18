@@ -2,29 +2,25 @@
   "LOCALE_ID": "ru",
   "LOCALE_EN": "Английский",
   "LOCALE_RU": "Русский",
-  "MESSAGE.HEADER_INFORMATION": "Информация",
-  "FORM.FORM_STATUS_HEADER.ERROR_IN_FORM": "Ошибка в форме",
-  "form" : {
-    "formStatusHeader": {
-      "errorInForm": "Ошибка в форме"
-    },
-    "field": {
-      "invalidValue": "Неверное значение"
-    }
-  },
-  "AuthLoginForm" : {
-    "header": "Авторизация",
-    "form" : {
-      "formStatusHeader": {
-        "value": "Неверный e-mail/пароль"
-      }
-    },
-    "buttonLogin": "Войти",
-    "fieldEmailTop": "E-mail",
-    "fieldEmailBottom": "Введите e-mail в формате [ name@domain.zone ]",
-    "fieldEmailPlaceHolder": "введите ваш e-mail",
-    "fieldPassTop": "Пароль",
-    "fieldPassBottom": "Пароль может содержать только латинские буквы и цифры",
-    "fieldPassPlaceHolder": "введите ваш пароль"
-  }
+  "LOCALE_NAME": "Язык",
+
+  "MESSAGE_HEADER_INFORMATION": "Информация",
+  "MESSAGE_HEADER_CONFIRMATION": "Подтверждение",
+  "MESSAGE_HEADER_ERROR": "Ошибка",
+  "MESSAGE_HEADER_SELECT": "Выбор",
+
+  "COMMON_ERROR_IN_FORM": "Ошибка в форме",
+  "COMMON_INVALID_VALUE": "Неверное значение",
+  "COMMON_BUTTON_LOGIN": "Войти",
+
+  "AUTH_LOGIN_FORM_HEADER": "Авторизация",
+  "AUTH_LOGIN_FORM_HEADER_ERROR_VALUE": "Неверный e-mail/пароль",
+
+  "FIELD_EMAIL": "E-mail",
+  "FIELD_EMAIL_HELPER": "Введите e-mail в формате [ name@domain.zone ]",
+  "FIELD_EMAIL_PLACEHOLDER": "введите ваш e-mail",
+
+  "FIELD_PASS": "Пароль",
+  "FIELD_PASS_HELPER": "Пароль может содержать только латинские буквы и цифры",
+  "FIELD_PASS_PLACEHOLDER": "введите ваш пароль"
 }

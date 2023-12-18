@@ -31,7 +31,7 @@ export const MessageInfo = (
     return (
       <BasePopoutWrapper
         {...restProps}
-        header={t('MESSAGE.HEADER_INFORMATION')}
+        header={t('MESSAGE_HEADER_INFORMATION')}
         useWrapperClick={false}
       >
           <FormLayout>
@@ -51,7 +51,7 @@ export const MessageInfo = (
                       <Button size="s" appearance="accent" onClick={() => {
                           void routeNavigator.hidePopout();
                       }}>
-                          {t('BUTTON.OK')}
+                          {t('BUTTON_OK')}
                       </Button>
                   </ButtonGroup>
               </FormItem>
