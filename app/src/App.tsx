@@ -38,14 +38,9 @@ const VK_IFRAME_APP_PADDING = 100
 
 export const App: FC = () => {
   const dispatch = useAppDispatch()
-  /** Возвращает активное всплывающее окно | null */
   const routerPopout = usePopout()
-  /** Возвращает платформу IOS, ANDROID, VKCOM */
   const platform = usePlatform()
-  /** Возвращает объект с помощью которого можно совершать переходы в навигации */
   const routeNavigator = useRouteNavigator()
-  /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
-  const onWelcomeComplete = useAppSelector(selectOnWelcomeComplete)
   const isAuthorized = useAppSelector(selectIsAuthorized)
   const appIsVkOpened = useAppSelector(selectAppIsVkOpened)
 
@@ -143,14 +138,7 @@ export const App: FC = () => {
 
   }, [isAuthorized, dispatch])
 
-  /** Открытие модалки при первом заходе в апп */
-  useEffect(() => {
 
-    if (!isAuthorized) return;
-
-    if (!onWelcomeComplete) void routeNavigator.showModal('welcome')
-
-  }, [isAuthorized, onWelcomeComplete, routeNavigator])
 
   /**
    * LOCALE

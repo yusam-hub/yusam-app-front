@@ -18,6 +18,9 @@ import { selectFilters, selectShopName } from 'src/store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './ShoppingCatalog.css'
+import {selectOnWelcomeComplete} from "../../store/user.reducer";
+import {selectIsAuthorized} from "../../store/auth.reducer";
+import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 const MOBILE_LIMIT = 12
 const DESKTOP_LIMIT = 40
@@ -43,6 +46,9 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
   const lastLoadItemIndex = useRef(shoppingCatalog.products.length || limit)
   const $storeContainer = useRef<HTMLDivElement>(null)
 
+  const onWelcomeComplete = useAppSelector(selectOnWelcomeComplete)
+  const isAuthorized = useAppSelector(selectIsAuthorized)
+  const routeNavigator = useRouteNavigator()
   const onHandleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
     scrollPosition.current = e.currentTarget.scrollTop
   }
@@ -104,6 +110,16 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
       .querySelectorAll('.ProductCard')
       .forEach(el => observer.current?.observe(el))
   }, [shoppingCatalog.products, limit])
+
+  /** Открытие модалки при первом заходе в апп */
+  useEffect(() => {
+
+    if (!isAuthorized) return;
+
+    if (!onWelcomeComplete) void routeNavigator.showModal('welcome')
+
+  }, [isAuthorized, onWelcomeComplete, routeNavigator])
+
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
