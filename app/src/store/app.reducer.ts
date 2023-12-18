@@ -9,8 +9,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as api from 'src/api'
 import { RootState } from '.'
 import {GLOB_LOCALE_APP_DEFAULT, GLOB_LOCALE_FALLBACK_DEFAULT} from "../globConsts";
+import {glob_app_is_vk} from "../globFuncs";
 export interface AppState {
   locale: string
+  isVkOpened: boolean
   productInfo: Product
   categories: Category[]
   shopInfo: ShopInfo
@@ -19,6 +21,7 @@ export interface AppState {
 
 export const appInitialState: AppState = {
   locale: navigator.language.split('-')[0] || GLOB_LOCALE_FALLBACK_DEFAULT,
+  isVkOpened: glob_app_is_vk(),
   //locale: GLOB_LOCALE_APP_DEFAULT,
   filters: { categoryId: '0' },
   categories: [],
@@ -99,6 +102,7 @@ export const selectShopName = (state: RootState) => state.app.shopInfo.name
 export const selectFilters = (state: RootState) => state.app.filters
 export const selectPriceTo = (state: RootState) => state.app.filters.priceTo
 export const selectAppLocale = (state: RootState) => state.app.locale
+export const selectAppIsVkOpened = (state: RootState) => state.app.isVkOpened
 
 export const {
   setAppLocale,

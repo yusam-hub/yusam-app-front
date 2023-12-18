@@ -23,7 +23,7 @@ import {
 import { Modals } from './modals'
 import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanel, AppView } from './routes'
-import {fetchShop, selectAppLocale} from './store/app.reducer'
+import {fetchShop, selectAppIsVkOpened, selectAppLocale} from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';
@@ -46,6 +46,7 @@ export const App: FC = () => {
   /** Подписываемся на обновление поля shopFetching, отвечающего за состояние загрузки контента магазина */
   const onBoardingComplete = useAppSelector(selectOnBoardingComplete)
   const isAuthorized = useAppSelector(selectIsAuthorized)
+  const appIsVkOpened = useAppSelector(selectAppIsVkOpened)
 
   /** Получаем текущую позицию */
   const {
@@ -183,7 +184,7 @@ export const App: FC = () => {
               nav={AppView.Public}
               activePanel={AppPanel.PublicLogin}
             >
-              {glob_app_is_vk(platform) ? (
+              {appIsVkOpened ? (
                 <AuthVk nav={AppPanel.PublicLogin} />
               ) : (
                 <AuthLoginForm nav={AppPanel.PublicLogin} />

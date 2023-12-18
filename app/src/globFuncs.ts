@@ -1,5 +1,4 @@
 import bridge, {parseURLSearchParamsForGetLaunchParams} from "@vkontakte/vk-bridge";
-import {Platform, PlatformType, usePlatform} from "@vkontakte/vkui";
 
 enum VkPlatformEnum {
   desktop_app_messenger = 'desktop_app_messenger',
@@ -13,7 +12,7 @@ enum VkPlatformEnum {
   mobile_web = 'mobile_web',
 }
 
-export const glob_app_is_vk = (platform: PlatformType): boolean =>
+export const glob_app_is_vk = (): boolean =>
 {
   const {
     vk_platform,
@@ -29,16 +28,15 @@ export const glob_app_is_vk = (platform: PlatformType): boolean =>
     vk_user_id !== undefined
   ;
 
-  /*console.log("searchChecked", searchChecked);
+  console.log("searchChecked", searchChecked);
   console.log("isIframe", bridge.isIframe());
   console.log("isEmbedded", bridge.isEmbedded());
   console.log("isStandalone", bridge.isStandalone());
   console.log("isWebView", bridge.isWebView());
-  console.log("platform", platform);*/
+
   return (
       bridge.isIframe()
       && bridge.isEmbedded()
-      && platform === Platform.VKCOM
       && !bridge.isStandalone()
       && !bridge.isWebView()
       && searchChecked
@@ -47,7 +45,6 @@ export const glob_app_is_vk = (platform: PlatformType): boolean =>
     (
       bridge.isWebView()
       && bridge.isEmbedded()
-      && (platform === Platform.ANDROID || platform === Platform.IOS)
       && !bridge.isStandalone()
       && !bridge.isIframe()
       && searchChecked
