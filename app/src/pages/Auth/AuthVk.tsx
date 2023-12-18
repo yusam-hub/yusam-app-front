@@ -32,8 +32,46 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
     setUserInfoLoadingStatus(1);
     const vkUserInfo = await bridge.send('VKWebAppGetUserInfo', {})
     console.log("vkUserInfo", vkUserInfo);
+    /**
+     * todo: здесь можно еще загрузить продукты из ShoppingCatalog
+     *        - чтобы небыло постоянного колеса загрузки и дополнительно ожидания
+     */
+
     setUserInfoLoadingStatus(2);
   }
+
+  /** Получение данных пользователя */
+  /*useLayoutEffect(() => {
+
+    if (!isAuthorized) return;
+    async function initUser() {
+      // Получаем данные текущего пользователя
+      const userData = await bridge.send('VKWebAppGetUserInfo', {})
+
+      // Проверяем есть ли он в Storage
+      const data = await bridge.send('VKWebAppStorageGet', {
+        keys: [userData.id.toString()],
+      })
+
+      // Если он уже сохранен, то сохраняем его имя в store
+      if (data.keys[0].value)
+        dispatch(setUserData({ name: data.keys[0].value, id: userData.id }))
+      // Если не сохранен, то сохраняем в store и показываем приветственную модалку
+      else if (userData) {
+        dispatch(setUserData({ name: userData.first_name, id: userData.id }))
+
+        //dispatch(setOnWelcomeComplete(false))
+
+        void bridge.send('VKWebAppStorageSet', {
+          key: userData.id.toString(),
+          value: userData.first_name,
+        })
+      }
+    }
+
+    void initUser()
+
+  }, [isAuthorized, dispatch])*/
 
   useEffect(() => {
 
