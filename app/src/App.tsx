@@ -15,23 +15,16 @@ import {
   useRouteNavigator,
 } from '@vkontakte/vk-mini-apps-router'
 import { useAppDispatch, useAppSelector } from './store'
-import {
-  selectOnWelcomeComplete,
-  setOnWelcomeComplete,
-  setUserData,
-} from './store/user.reducer'
 import { Modals } from './modals'
 import {ShoppingCatalog, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanel, AppView } from './routes'
 import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
-import { fetchShop } from './store/shop.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {AuthVk} from "./pages/Auth/AuthVk";
-import {glob_app_is_vk} from "./globFuncs";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -55,7 +48,7 @@ export const App: FC = () => {
   const { isDesktop } = useAdaptivityWithJSMediaQueries()
   const onSwipeBack = useCallback(() => routeNavigator.back(), [routeNavigator])
 
-  if (!isDesktop) {
+  /*if (!isDesktop) {
     bridge.subscribe((e) => {
       if (e.detail.type === 'VKWebAppViewHide') {
         console.log("VKWebAppViewHide");
@@ -71,10 +64,10 @@ export const App: FC = () => {
         console.log("visibilitychange shown");
       }
     });
-  }
+  }*/
 
   /** Получение данных пользователя */
-  useLayoutEffect(() => {
+  /*useLayoutEffect(() => {
 
     if (!isAuthorized) return;
     async function initUser() {
@@ -92,7 +85,9 @@ export const App: FC = () => {
       // Если не сохранен, то сохраняем в store и показываем приветственную модалку
       else if (userData) {
         dispatch(setUserData({ name: userData.first_name, id: userData.id }))
-        dispatch(setOnWelcomeComplete(false))
+
+        //dispatch(setOnWelcomeComplete(false))
+
         void bridge.send('VKWebAppStorageSet', {
           key: userData.id.toString(),
           value: userData.first_name,
@@ -102,7 +97,7 @@ export const App: FC = () => {
 
     void initUser()
 
-  }, [isAuthorized, dispatch])
+  }, [isAuthorized, dispatch])*/
 
   /** Растягивание экрана для VKCOM на всю ширину окна для десктопа */
   useEffect(() => {

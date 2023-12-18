@@ -119,6 +119,7 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   /** Открытие модалки при первом заходе в shop */
   useEffect(() => {
+    //dispatch(setOnWelcomeComplete(false))
     if (!onWelcomeComplete) void routeNavigator.showModal('welcome')
   }, [onWelcomeComplete, routeNavigator])
 
