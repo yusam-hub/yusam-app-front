@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 import { SelectRadioGroup } from "../../popups/Wrapper/SelectRadioGroup";
 import { useSelector } from "react-redux";
 import { selectAppLocale, setAppLocale } from "../../store/app.reducer";
+import { glob_in_enum } from "../../globFuncs";
 
 
 export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
@@ -30,8 +31,8 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
   const { t} = useTranslation()
-  const platform = usePlatform()
   const appLocale: string = useSelector(selectAppLocale)
+
   /**
    * LOCAL CONST
    */
@@ -43,6 +44,13 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   const [ controlDisabled, setControlDisabled] = React.useState<boolean>(false)
   const [ userEmail, setUserEmail] = React.useState('admin')
   const [ userPass, setUserPass] = React.useState('Qwertyu1')
+
+  const onSelectValue = (value: string) => {
+    if (glob_in_enum(value, LocalesEnum)) {
+      dispatch(setAppLocale(value));
+      void routeNavigator.hidePopout();
+    }
+  }
 
   /**
    * RETURN CONTENT
@@ -63,7 +71,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
       <div className="AuthLoginFormCenter">
         <Group mode="card">
           <Header className="AuthLoginHeader" aside={<Button mode={"tertiary"} onClick={() => {
-            routeNavigator.showPopout(
+            void routeNavigator.showPopout(
               <SelectRadioGroup
                 radioItems={[
                   {
@@ -77,10 +85,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                     defaultChecked: appLocale === LocalesEnum.RU
                   },
                 ]}
-                onSelectValue={(value: string)=>{
-                  dispatch(setAppLocale(value));
-                  void routeNavigator.hidePopout();
-                }}
+                onSelectValue={onSelectValue}
               />
             );
           }}>

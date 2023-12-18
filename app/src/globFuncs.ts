@@ -12,6 +12,11 @@ enum VkPlatformEnum {
   mobile_web = 'mobile_web',
 }
 
+export const glob_in_enum = (value: any, enums: any): boolean =>
+{
+  return (<any>Object).values(enums).includes(value?.toString());
+}
+
 export const glob_app_is_vk = (): boolean =>
 {
   const {
@@ -21,18 +26,18 @@ export const glob_app_is_vk = (): boolean =>
   } = parseURLSearchParamsForGetLaunchParams(window.location.search);
 
   const searchChecked =
-    (<any>Object).values(VkPlatformEnum).includes(vk_platform?.toString())
+    glob_in_enum(vk_platform, VkPlatformEnum)
     &&
     vk_app_id !== undefined
     &&
     vk_user_id !== undefined
   ;
 
-  console.log("searchChecked", searchChecked);
+  /*console.log("searchChecked", searchChecked);
   console.log("isIframe", bridge.isIframe());
   console.log("isEmbedded", bridge.isEmbedded());
   console.log("isStandalone", bridge.isStandalone());
-  console.log("isWebView", bridge.isWebView());
+  console.log("isWebView", bridge.isWebView());*/
 
   return (
       bridge.isIframe()
