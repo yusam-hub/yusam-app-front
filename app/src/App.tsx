@@ -21,7 +21,7 @@ import {
   setUserData,
 } from './store/user.reducer'
 import { Modals } from './modals'
-import {Store, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
+import {ShoppingCatalog, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanel, AppView } from './routes'
 import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
 import { fetchShop } from './store/shop.reducer'
@@ -205,7 +205,7 @@ export const App: FC = () => {
               nav={AppView.Private}
               activePanel={activePanel}
             >
-              <Store nav={AppPanel.PrivateHome} />
+              <ShoppingCatalog nav={AppPanel.PrivateHome} />
               <ProductInfo nav={AppPanel.PrivateProductInfo} />
               <ShoppingCart nav={AppPanel.PrivateShoppingCart} />
             </View>

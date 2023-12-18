@@ -17,7 +17,7 @@ import { imageIntersectionObserver, findImage } from 'src/utils'
 import { selectFilters, selectShopName } from 'src/store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
-import './Store.css'
+import './ShoppingCatalog.css'
 
 const MOBILE_LIMIT = 12
 const DESKTOP_LIMIT = 40
@@ -27,7 +27,7 @@ const IMAGE_LOADING_OPTIONS = {
   attributeName: 'data-src',
 }
 
-export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
+export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
 
   const store = useAppSelector(selectStore)
@@ -130,4 +130,4 @@ export const Store: FC<NavIdProps> = memo((props: NavIdProps) => {
   )
 })
 
-Store.displayName = 'Store'
+ShoppingCatalog.displayName = 'ShoppingCatalog'
