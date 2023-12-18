@@ -1,4 +1,4 @@
-import {Card, CardGrid, Group, Header, PopoutWrapper} from "@vkontakte/vkui";
+import {Card, CardGrid, Group, Header, PanelHeader, PopoutWrapper, Spacing} from "@vkontakte/vkui";
 import {HTMLAttributesWithRootRef} from "@vkontakte/vkui/src/types";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
@@ -34,16 +34,24 @@ export const BasePopoutWrapper = (
         alignX={alignX}
         alignY={alignY}
       >
-          <Group mode="card">
-              <CardGrid size="l">
+          <Card mode="outline"
+
+          >
+              {/*<Spacing size={15} />*/}
+              <CardGrid
+                size="l"
+                style={{margin:"15px"}}
+              >
                   <Card
-                    mode="outline"
+                    mode="shadow"
+                    style={{ backgroundColor:'lightgrey'}}
                   >
+
                       <Header
                         mode="primary"
                         multiline={true}
                       >
-                          {header}
+                          <div style={{color: 'black'}}>{header}</div>
                       </Header>
                   </Card>
                   <Card
@@ -52,7 +60,8 @@ export const BasePopoutWrapper = (
                       {children}
                   </Card>
               </CardGrid>
-          </Group>
+              {/*<Spacing size={15} />*/}
+          </Card>
       </PopoutWrapper>
     );
 }

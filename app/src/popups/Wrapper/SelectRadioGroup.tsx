@@ -54,8 +54,6 @@ export const SelectRadioGroup = (
       >
           <FormLayout>
               <FormItem>
-                  <Spacing size={10}/>
-
                   <RadioGroup>
                       {
                           radioItems.map((item, i) => {
@@ -77,7 +75,6 @@ export const SelectRadioGroup = (
                           })
                       }
                   </RadioGroup>
-                  <Spacing size={10}/>
               </FormItem>
           </FormLayout>
       </BasePopoutWrapper>

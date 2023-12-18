@@ -70,6 +70,7 @@ export const App: FC = () => {
   useEffect(() => {
     async function iframeResizeForVkCom() {
       // Проверяем, что платформа VK.COM
+
       if (platform !== Platform.VKCOM) return
 
       // Получаем данные конфигурации
