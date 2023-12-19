@@ -13,7 +13,7 @@ import {
 import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
-import { AppRoutePath } from "../../routes";
+import { AppRoutePathEnum } from "../../routes";
 import { FormErrorsInterface, LocalesEnum } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
@@ -165,7 +165,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                     if (userEmail === 'admin' && userPass === 'Qwertyu1') {
 
                       dispatch(setIsAuthorized(true))
-                      void routeNavigator.push(AppRoutePath.PrivateHome);
+                      void routeNavigator.push(AppRoutePathEnum.PrivateHome);
 
                     } else {
 

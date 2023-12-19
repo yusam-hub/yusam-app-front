@@ -2,7 +2,7 @@ import { FC, memo } from 'react'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { Counter, TabbarItem, Tabbar } from '@vkontakte/vkui'
 import { Icon28ShoppingCartOutline, Icon28HomeOutline } from '@vkontakte/icons'
-import {AppPanel, AppRoutePath} from 'src/routes'
+import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppSelector } from 'src/store'
 
@@ -17,20 +17,20 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
     const productCount = orderProducts.length
 
     const onPaymantTabbarItemClick = () => {
-      if (activePanel === AppPanel.PrivateShoppingCart) return
-      void routeNavigator.push(AppRoutePath.PrivateShoppingCart)
+      if (activePanel === AppPanelEnum.PrivateShoppingCart) return
+      void routeNavigator.push(AppRoutePathEnum.PrivateShoppingCart)
     }
 
     const onViewingTabbarItemClick = () => {
-      if (activePanel !== AppPanel.PrivateShoppingCart) return
-      void routeNavigator.push(AppRoutePath.PrivateHome)
+      if (activePanel !== AppPanelEnum.PrivateShoppingCart) return
+      void routeNavigator.push(AppRoutePathEnum.PrivateHome)
     }
 
     return (
       <Tabbar>
         <TabbarItem
           onClick={onViewingTabbarItemClick}
-          selected={activePanel !== AppPanel.PrivateShoppingCart}
+          selected={activePanel !== AppPanelEnum.PrivateShoppingCart}
           data-story="feed"
           text="Каталог"
         >
@@ -38,7 +38,7 @@ export const CustomTabbar: FC<CustomTabbarProps> = memo(
         </TabbarItem>
         <TabbarItem
           onClick={onPaymantTabbarItemClick}
-          selected={activePanel === AppPanel.PrivateShoppingCart}
+          selected={activePanel === AppPanelEnum.PrivateShoppingCart}
           data-story="messages"
           indicator={
             productCount ? (

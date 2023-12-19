@@ -2,7 +2,7 @@ import { FC, memo, useMemo, useRef } from 'react'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { AddToCartButton, PriceDisplay } from 'src/components'
 import { ProductPreview } from 'src/types'
-import {AppPanel, AppRoutePath} from 'src/routes'
+import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
 
 import './ProductCard.css'
 
@@ -30,7 +30,7 @@ export const ProductCard: FC<ProductCardProps> = memo(
     /** При клике на карту переходим на страницу товара */
     const onCardClick = () => {
       const params = `id=${id}&name=${name}&price=${price}&back=${back}`
-      routeNavigator.push(AppRoutePath.PrivateProductInfo + `?${params}`)
+      routeNavigator.push(AppRoutePathEnum.PrivateProductInfo + `?${params}`)
     }
 
     /** При загрузке фотографии убираем класс заглушку */

@@ -14,7 +14,7 @@ import { selectAppLocale, setAppLocale } from "../../store/app.reducer";
 import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
 import {selectIsAuthorized, setIsAuthorized} from "../../store/auth.reducer";
 import bridge, {parseURLSearchParamsForGetLaunchParams} from "@vkontakte/vk-bridge";
-import {AppRoutePath} from "../../routes";
+import {AppRoutePathEnum} from "../../routes";
 
 export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -85,7 +85,7 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
 
       setTimeout(function(){
         dispatch(setIsAuthorized(true))
-        void routeNavigator.push(AppRoutePath.PrivateHome);
+        void routeNavigator.push(AppRoutePathEnum.PrivateHome);
       }, 2000);
 
     }

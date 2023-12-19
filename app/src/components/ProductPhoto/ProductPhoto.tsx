@@ -10,7 +10,7 @@ export type ProductPhotoProps = {
   appearance: ImageBackgroundAppearanceEnum
 }
 
-enum Orientation {
+enum OrientationEnum {
   Vertical = 'vertical',
   Horizontal = 'horizontal',
   Square = 'square',
@@ -19,7 +19,7 @@ enum Orientation {
 /** Компонент для отображения фотографии в галерее */
 export const ProductPhoto: FC<ProductPhotoProps> = memo(
   ({ url, appearance }: ProductPhotoProps) => {
-    const [orientation, setOrientation] = useState<Orientation | undefined>(
+    const [orientation, setOrientation] = useState<OrientationEnum | undefined>(
       undefined
     )
     const { panel } = useActiveVkuiLocation()
@@ -31,10 +31,10 @@ export const ProductPhoto: FC<ProductPhotoProps> = memo(
       if (!$photo.current) return
       const photo = $photo.current
       const onImageLoad = () => {
-        if (photo.height > photo.width) setOrientation(Orientation.Vertical)
+        if (photo.height > photo.width) setOrientation(OrientationEnum.Vertical)
         else if (photo.height < photo.width)
-          setOrientation(Orientation.Horizontal)
-        else setOrientation(Orientation.Square)
+          setOrientation(OrientationEnum.Horizontal)
+        else setOrientation(OrientationEnum.Square)
       }
       photo.addEventListener('load', onImageLoad)
 
@@ -55,11 +55,11 @@ export const ProductPhoto: FC<ProductPhotoProps> = memo(
             src={url + '.png'}
             className={cx('ProductPhoto_photo', {
               ProductPhoto_photo__loaded: orientation,
-              ProductPhoto_photo__square: orientation === Orientation.Square,
+              ProductPhoto_photo__square: orientation === OrientationEnum.Square,
               ProductPhoto_photo__vertical:
-                orientation === Orientation.Vertical,
+                orientation === OrientationEnum.Vertical,
               ProductPhoto_photo__horizontal:
-                orientation === Orientation.Horizontal,
+                orientation === OrientationEnum.Horizontal,
             })}
           />
         </picture>

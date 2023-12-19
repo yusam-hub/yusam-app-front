@@ -17,7 +17,7 @@ import {
 import { useAppDispatch, useAppSelector } from './store'
 import { Modals } from './modals'
 import {ShoppingCatalog, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
-import { AppPanel, AppView } from './routes'
+import { AppPanelEnum, AppViewEnum } from './routes'
 import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
 import { CustomTabbar } from './components'
 import {selectIsAuthorized} from "./store/auth.reducer";
@@ -40,8 +40,8 @@ export const App: FC = () => {
   /** Получаем текущую позицию */
   const {
     panelsHistory,
-    view: activeView = !isAuthorized ? AppView.Public : AppView.Private,
-    panel: activePanel = !isAuthorized ? AppPanel.PublicLogin : AppPanel.PrivateHome,
+    view: activeView = !isAuthorized ? AppViewEnum.Public : AppViewEnum.Private,
+    panel: activePanel = !isAuthorized ? AppPanelEnum.PublicLogin : AppPanelEnum.PrivateHome,
   } = useActiveVkuiLocation()
 
   /** Получаем тип устройства */
@@ -118,16 +118,16 @@ export const App: FC = () => {
       {!isAuthorized ? (
         <SplitCol>
           <Epic
-            activeStory={AppView.Public}
+            activeStory={AppViewEnum.Public}
           >
             <View
-              nav={AppView.Public}
-              activePanel={AppPanel.PublicLogin}
+              nav={AppViewEnum.Public}
+              activePanel={AppPanelEnum.PublicLogin}
             >
               {appIsVkOpened ? (
-                <AuthVk nav={AppPanel.PublicLogin} />
+                <AuthVk nav={AppPanelEnum.PublicLogin} />
               ) : (
-                <AuthLoginForm nav={AppPanel.PublicLogin} />
+                <AuthLoginForm nav={AppPanelEnum.PublicLogin} />
               )}
             </View>
           </Epic>
@@ -141,12 +141,12 @@ export const App: FC = () => {
             <View
               onSwipeBack={onSwipeBack}
               history={panelsHistory}
-              nav={AppView.Private}
+              nav={AppViewEnum.Private}
               activePanel={activePanel}
             >
-              <ShoppingCatalog nav={AppPanel.PrivateHome} />
-              <ProductInfo nav={AppPanel.PrivateProductInfo} />
-              <ShoppingCart nav={AppPanel.PrivateShoppingCart} />
+              <ShoppingCatalog nav={AppPanelEnum.PrivateHome} />
+              <ProductInfo nav={AppPanelEnum.PrivateProductInfo} />
+              <ShoppingCart nav={AppPanelEnum.PrivateShoppingCart} />
             </View>
           </Epic>
         </SplitCol>
