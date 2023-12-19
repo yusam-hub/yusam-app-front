@@ -2,13 +2,13 @@ import { OrderProduct, ProductPreview } from 'src/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 
-export interface ShoppingCartState {
+export interface ShoppingCartStateInterface {
   orderProducts: OrderProduct[]
   totalPrice: number
   promoCode: string
 }
 
-export const initialState: ShoppingCartState = {
+export const initialState: ShoppingCartStateInterface = {
   orderProducts: [],
   totalPrice: 0,
   promoCode: ''

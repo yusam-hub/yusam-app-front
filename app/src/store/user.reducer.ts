@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 
-export interface UserState {
+export interface UserStateInterface {
   id?: number,
   name: string
   onWelcomeComplete: boolean
 }
 
-const initialState: UserState = {
+const initialState: UserStateInterface = {
   id: undefined,
   name: '',
   onWelcomeComplete: true,

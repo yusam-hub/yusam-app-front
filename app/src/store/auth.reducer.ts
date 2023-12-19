@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 
-export interface AuthState {
+export interface AuthStateInterface {
   isAuthorized: boolean
 }
 
-const initialState: AuthState = {
+const initialState: AuthStateInterface = {
   isAuthorized: false,
 }
 

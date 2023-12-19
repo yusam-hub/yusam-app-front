@@ -1,9 +1,9 @@
-import { ApiEndpoint } from 'src/types'
+import { ApiEndPointEnum } from 'src/types'
 
 const API_URL = 'https://shop-boilerplate-backend.vercel.app'
 
-interface Arguments {
-  endpoint: ApiEndpoint
+interface ArgumentsInterface {
+  endpoint: ApiEndPointEnum
   params?: Record<string, string>
   requestOptions?: RequestInit
 }
@@ -24,7 +24,7 @@ export const makeRequest = async <T = never>({
   params,
   endpoint,
   requestOptions,
-}: Arguments): Promise<T> => {
+}: ArgumentsInterface): Promise<T> => {
   const url = new URL(API_URL + '/' + endpoint)
   url.search = new URLSearchParams(params).toString()
   console.log('request', url, requestOptions)

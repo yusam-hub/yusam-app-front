@@ -12,13 +12,13 @@ import {
     SimpleCell,
     Spacing
 } from "@vkontakte/vkui";
-import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
+import {BasePopoutWrapper, BasePopoutWrapperPropsInterface} from "./BasePopoutWrapper";
 import {Icon28HelpCircleOutline, Icon28InfoCircle} from "@vkontakte/icons";
 import {useTranslation} from "react-i18next";
 import {MouseEventHandler} from "react";
 import i18n from "../../i18n";
 
-export interface MessageConfirmationProps extends BasePopoutWrapperProps {
+export interface MessageConfirmationPropsInterface extends BasePopoutWrapperPropsInterface {
     message: string,
     buttonPositiveText?: string,
     buttonNegativeText?: string,
@@ -31,7 +31,7 @@ export const MessageConfirmation = (
     buttonNegativeText = i18n.t('BUTTON_NO'),
     onClickPositive,
     ...restProps
-  }: MessageConfirmationProps) =>
+  }: MessageConfirmationPropsInterface) =>
 {
     const routeNavigator = useRouteNavigator()
     const { t} = useTranslation();

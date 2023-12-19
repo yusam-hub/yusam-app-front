@@ -1,22 +1,22 @@
 import {
-  Category,
-  ImageBackgroundAppereance,
-  Product,
-  ProductFilter,
-  ShopInfo
+  CategoryInterface,
+  ImageBackgroundAppearanceEnum,
+  ProductInterface,
+  ProductFilterInterface,
+  ShopInfoInterface
 } from 'src/types'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as api from 'src/api'
 import { RootState } from '.'
 
-export interface ShopState {
-  productInfo: Product
-  categories: Category[]
-  shopInfo: ShopInfo
-  filters: ProductFilter
+export interface ShopStateInterface {
+  productInfo: ProductInterface
+  categories: CategoryInterface[]
+  shopInfo: ShopInfoInterface
+  filters: ProductFilterInterface
 }
 
-export const shopInitialState: ShopState = {
+export const shopInitialState: ShopStateInterface = {
   filters: { categoryId: '0' },
   categories: [],
   shopInfo: {
@@ -28,7 +28,7 @@ export const shopInitialState: ShopState = {
     price: 0,
     name: '',
     preview: '',
-    back: ImageBackgroundAppereance.Grey,
+    back: ImageBackgroundAppearanceEnum.Grey,
     photos: [],
     categoryId: [],
     description: '',
@@ -53,7 +53,7 @@ const shopSlice = createSlice({
   name: 'shop',
   initialState: shopInitialState,
   reducers: {
-    setProductFilters(state, action: PayloadAction<ProductFilter>) {
+    setProductFilters(state, action: PayloadAction<ProductFilterInterface>) {
       state.filters = action.payload
     },
     setFiltersCategory(state, action: PayloadAction<string>) {

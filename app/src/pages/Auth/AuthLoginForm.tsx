@@ -14,7 +14,7 @@ import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePath } from "../../routes";
-import { IFormErrors, LocalesEnum } from "../../types";
+import { FormErrorsInterface, LocalesEnum } from "../../types";
 import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
 import { useTranslation } from "react-i18next";
 import { SelectRadioGroup } from "../../popups/Wrapper/SelectRadioGroup";
@@ -36,7 +36,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
   /**
    * LOCAL CONST
    */
-  const [ formErrors, setFormErrors] = React.useState<IFormErrors>( {
+  const [ formErrors, setFormErrors] = React.useState<FormErrorsInterface>( {
     errorMessage: '',
     errorFields: {},
   })

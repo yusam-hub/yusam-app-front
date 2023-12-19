@@ -12,18 +12,18 @@ import {
     SimpleCell,
     Spacing
 } from "@vkontakte/vkui";
-import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
+import {BasePopoutWrapper, BasePopoutWrapperPropsInterface} from "./BasePopoutWrapper";
 import {Icon28InfoCircle} from "@vkontakte/icons";
 import {useTranslation} from "react-i18next";
 
-export interface MessageInfoProps extends BasePopoutWrapperProps {
+export interface MessageInfoPropsInterface extends BasePopoutWrapperPropsInterface {
     message: string
 }
 export const MessageInfo = (
   {
       message,
       ...restProps
-  }: MessageInfoProps) =>
+  }: MessageInfoPropsInterface) =>
 {
     const routeNavigator = useRouteNavigator()
     const { t} = useTranslation();

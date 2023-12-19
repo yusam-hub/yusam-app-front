@@ -1,7 +1,7 @@
-import { ApiEndpoint, ProductFilter, ProductPreview } from 'src/types'
+import { ApiEndPointEnum, ProductFilterInterface, ProductPreview } from 'src/types'
 import { makeRequest } from 'src/api/makeRequest'
 
-export interface GetProductsRequest {
+export interface GetProductsRequestInterface {
   /** Порядковый номер первого возвращаемого товара в списке */
   start: number
 
@@ -9,10 +9,10 @@ export interface GetProductsRequest {
   end: number
 
   /** Фильтры пользователя */
-  filters: ProductFilter
+  filters: ProductFilterInterface
 }
 
-export interface GetProductsResponse {
+export interface GetProductsResponseInterface {
   /** Отфильтрованные продукты с порядковыми номерами от _start до _end */
   products: ProductPreview[]
 
@@ -25,9 +25,9 @@ export const getFilteredProducts = async ({
   end,
   start,
   filters,
-}: GetProductsRequest): Promise<GetProductsResponse> => {
-  return await makeRequest<GetProductsResponse>({
-    endpoint: ApiEndpoint.FilteredProducts,
+}: GetProductsRequestInterface): Promise<GetProductsResponseInterface> => {
+  return await makeRequest<GetProductsResponseInterface>({
+    endpoint: ApiEndPointEnum.FilteredProducts,
     params: {
       end: end.toString(),
       start: start.toString(),

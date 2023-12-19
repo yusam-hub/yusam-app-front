@@ -1,6 +1,6 @@
 /** Задаем глобальные типы сущностям */
 /** Определяем глобальные enum */
-export interface Product {
+export interface ProductInterface {
   id: number
   name: string
   price: number
@@ -8,42 +8,42 @@ export interface Product {
   description: string
   maxAvailable: number
   categoryId: number[]
-  back: ImageBackgroundAppereance
-  photos: Array<{ url: string; appearence: ImageBackgroundAppereance }>
+  back: ImageBackgroundAppearanceEnum
+  photos: Array<{ url: string; appearance: ImageBackgroundAppearanceEnum }>
 }
 
 export type ProductPreview = Omit<
-  Product,
+  ProductInterface,
   'categoryId' | 'photos' | 'description'
 >
 
 export type OrderProduct = ProductPreview & { numItemsToBuy: number }
 
-export interface Category {
+export interface CategoryInterface {
   id: number
   name: string
   productCount: number
 }
 
-export interface ProductFilter {
+export interface ProductFilterInterface {
   categoryId?: string
   priceFrom?: number
   priceTo?: number
   query?: string
 }
 
-export interface ShopInfo {
+export interface ShopInfoInterface {
   name: string
   logo: string
 }
 
-export enum ApiEndpoint {
+export enum ApiEndPointEnum {
   InitialData = 'getInitialData',
   ProductInfo = 'getProductInfo',
   FilteredProducts = 'getFilteredProducts',
 }
 
-export enum ImageBackgroundAppereance {
+export enum ImageBackgroundAppearanceEnum {
   Rose = 'rose',
   Grey = 'grey',
   Blue = 'blue',
@@ -51,17 +51,13 @@ export enum ImageBackgroundAppereance {
   Violet = 'violet',
 }
 
-export interface IKeyStringValueStringObject {
+export interface KeyStringValueStringObjectInterface {
   [key: string]: string
 }
-export interface IFormFieldError {
-  fieldName: string,
-  fieldMessage: string,
-}
 
-export interface IFormErrors {
+export interface FormErrorsInterface {
   errorMessage?: string | undefined,
-  errorFields: IKeyStringValueStringObject,
+  errorFields: KeyStringValueStringObjectInterface,
 }
 
 export enum LocalesEnum {

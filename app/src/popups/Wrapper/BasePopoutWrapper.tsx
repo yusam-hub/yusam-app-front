@@ -3,7 +3,7 @@ import {HTMLAttributesWithRootRef} from "@vkontakte/vkui/src/types";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 
-export interface BasePopoutWrapperProps extends HTMLAttributesWithRootRef<HTMLDivElement> {
+export interface BasePopoutWrapperPropsInterface extends HTMLAttributesWithRootRef<HTMLDivElement> {
     header?: string
     alignX?: 'left' | 'center' | 'right';
     alignY?: 'top' | 'center' | 'bottom';
@@ -18,7 +18,7 @@ export const BasePopoutWrapper = (
     useWrapperClick = true,
     children,
     ...restProps
-  }: BasePopoutWrapperProps) =>
+  }: BasePopoutWrapperPropsInterface) =>
 {
     const routeNavigator = useRouteNavigator()
 

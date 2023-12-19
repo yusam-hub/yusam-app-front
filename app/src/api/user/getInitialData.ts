@@ -1,8 +1,8 @@
-import { ApiEndpoint, Category } from 'src/types'
+import { ApiEndPointEnum, CategoryInterface } from 'src/types'
 import { makeRequest } from 'src/api/makeRequest'
 
-interface GetUserResponse {
-  categories: Category[]
+interface GetUserResponseInterface {
+  categories: CategoryInterface[]
   shopInfo: {
     name: string
     logo: string
@@ -10,8 +10,8 @@ interface GetUserResponse {
 }
 
 /** Получение данных магазина и рекомендованных пользователю товаров */
-export const getInitialData = async (): Promise<GetUserResponse> => {
-  return await makeRequest<GetUserResponse>({
-    endpoint: ApiEndpoint.InitialData,
+export const getInitialData = async (): Promise<GetUserResponseInterface> => {
+  return await makeRequest<GetUserResponseInterface>({
+    endpoint: ApiEndPointEnum.InitialData,
   })
 }

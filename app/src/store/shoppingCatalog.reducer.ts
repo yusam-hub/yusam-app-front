@@ -1,15 +1,15 @@
-import { ProductFilter, ProductPreview } from 'src/types'
+import { ProductFilterInterface, ProductPreview } from 'src/types'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 import * as api from 'src/api'
 
-export interface ShoppingCatalogState {
+export interface ShoppingCatalogStateInterface {
   products: ProductPreview[]
   scrollPosition: number
   isStoreFetching: boolean
 }
 
-export const storeInitialState: ShoppingCatalogState = {
+export const storeInitialState: ShoppingCatalogStateInterface = {
   products: [],
   scrollPosition: 0,
   isStoreFetching: true,
@@ -25,7 +25,7 @@ export const fetchFilteredProducts = createAsyncThunk(
   }: {
     end: number
     start: number
-    filters: ProductFilter
+    filters: ProductFilterInterface
   }) {
     const res = await api.products.getFilteredProducts({
       end,
@@ -53,8 +53,7 @@ const ShoppingCatalogSlice = createSlice({
         state.scrollPosition = 0
       } else state.products = state.products.concat(action.payload.products)
 
-      state.isStoreFetching =
-        action.payload.end < action.payload.filteredProductCount
+      state.isStoreFetching = action.payload.end < action.payload.filteredProductCount
     })
   },
 })

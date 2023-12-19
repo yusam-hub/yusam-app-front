@@ -12,22 +12,22 @@ import {
     SimpleCell,
     Spacing
 } from "@vkontakte/vkui";
-import {BasePopoutWrapper, BasePopoutWrapperProps} from "./BasePopoutWrapper";
+import {BasePopoutWrapper, BasePopoutWrapperPropsInterface} from "./BasePopoutWrapper";
 import {useTranslation} from "react-i18next";
 import i18n from "../../i18n";
 import {AnyFunction} from "@vkontakte/vkui/src/types";
-import {IKeyStringValueStringObject} from "../../types";
+import {KeyStringValueStringObjectInterface} from "../../types";
 
-export interface SelectRadioGroupItem {
+export interface SelectRadioGroupItemInterface {
     id: string,
     title: string,
     description?: string,
     defaultChecked?: boolean
 }
-export interface SelectRadioGroupProps extends BasePopoutWrapperProps {
+export interface SelectRadioGroupPropsInterface extends BasePopoutWrapperPropsInterface {
     buttonPositiveText?: string,
     buttonNegativeText?: string,
-    radioItems: SelectRadioGroupItem[],
+    radioItems: SelectRadioGroupItemInterface[],
     onSelectValue: AnyFunction
 }
 export const SelectRadioGroup = (
@@ -37,7 +37,7 @@ export const SelectRadioGroup = (
     onSelectValue,
     radioItems,
     ...restProps
-  }: SelectRadioGroupProps) =>
+  }: SelectRadioGroupPropsInterface) =>
 {
     const routeNavigator = useRouteNavigator()
     const { t} = useTranslation();

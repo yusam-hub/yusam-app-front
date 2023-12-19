@@ -1,13 +1,13 @@
 import { FC, memo, useEffect, useRef, useState } from 'react'
 import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router'
-import { ImageBackgroundAppereance } from 'src/types'
+import { ImageBackgroundAppearanceEnum } from 'src/types'
 import cx from 'classnames'
 
 import './ProductPhoto.css'
 
 export type ProductPhotoProps = {
   url: string
-  appearence: ImageBackgroundAppereance
+  appearance: ImageBackgroundAppearanceEnum
 }
 
 enum Orientation {
@@ -18,7 +18,7 @@ enum Orientation {
 
 /** Компонент для отображения фотографии в галерее */
 export const ProductPhoto: FC<ProductPhotoProps> = memo(
-  ({ url, appearence }: ProductPhotoProps) => {
+  ({ url, appearance }: ProductPhotoProps) => {
     const [orientation, setOrientation] = useState<Orientation | undefined>(
       undefined
     )
@@ -47,7 +47,7 @@ export const ProductPhoto: FC<ProductPhotoProps> = memo(
     }, [url, panel])
 
     return (
-      <div className={`ProductPhoto Back__${appearence}`}>
+      <div className={`ProductPhoto Back__${appearance}`}>
         <picture className="ProductPhoto_picture">
           <source srcSet={url + '.webp'} type="image/webp"></source>
           <img

@@ -2,12 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '.'
 import { GLOB_LOCALE_FALLBACK_DEFAULT} from "../globConsts";
 import { glob_app_is_vk } from "../globFuncs";
-export interface AppState {
+
+export interface AppStateInterface {
   locale: string
   isVkOpened: boolean
 }
 
-export const appInitialState: AppState = {
+export const appInitialState: AppStateInterface = {
   locale: navigator.language.split('-')[0] || GLOB_LOCALE_FALLBACK_DEFAULT,
   isVkOpened: glob_app_is_vk(),
 }
