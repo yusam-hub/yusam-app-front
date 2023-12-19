@@ -19,7 +19,7 @@ import { App } from './App'
 export const AppConfig = () => {
   const appearance = useAppearance()
   const adaptivity = useAdaptivity()
-  const insets = useInsets()
+  const safeAreaInsets = useInsets()
 
   /**
    * ConfigProvider - прокидывает нужный config в соответствии c платформой(IOS, ANDROID, VK.COM) и выбранной темой [https://vkcom.github.io/VKUI/#/ConfigProvider]
@@ -34,7 +34,7 @@ export const AppConfig = () => {
       hasCustomPanelHeaderAfter={false}
     >
       <AdaptivityProvider {...adaptivity}>
-        <AppRoot safeAreaInsets={insets ?? {}}>
+        <AppRoot safeAreaInsets={safeAreaInsets ?? {}}>
           <Provider store={store}>
             <RouterProvider router={router}>
               <App />
