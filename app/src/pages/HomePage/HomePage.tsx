@@ -9,8 +9,7 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <div className={'HomePage'}>
-
-
+        HOME PAGE
       </div>
     </Panel>
   )

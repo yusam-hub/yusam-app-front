@@ -145,8 +145,8 @@ export const App: FC = () => {
               nav={AppViewEnum.Private}
               activePanel={activePanel}
             >
-              <HomePage nav={AppPanelEnum.PrivateHome} />
-              {/*<ShoppingCatalog nav={AppPanelEnum.PrivateHome} />*/}
+              {/*<HomePage nav={AppPanelEnum.PrivateHome} />*/}
+              <ShoppingCatalog nav={AppPanelEnum.PrivateHome} />
               <ProductInfo nav={AppPanelEnum.PrivateProductInfo} />
               <ShoppingCart nav={AppPanelEnum.PrivateShoppingCart} />
             </View>
