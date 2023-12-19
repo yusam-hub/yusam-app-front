@@ -1,13 +1,14 @@
 import React, {FC, memo} from 'react'
 import {NavIdProps, Panel} from "@vkontakte/vkui";
 import {useAppDispatch} from "../../store";
-import './Home.css'
-export const Home: FC<NavIdProps> = memo((props: NavIdProps) => {
+import './HomePage.css'
+
+export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
-      <div className={'Home'}>
+      <div className={'HomePage'}>
 
 
       </div>
@@ -15,4 +16,4 @@ export const Home: FC<NavIdProps> = memo((props: NavIdProps) => {
   )
 })
 
-Home.displayName = 'Home'
+HomePage.displayName = 'HomePage'
