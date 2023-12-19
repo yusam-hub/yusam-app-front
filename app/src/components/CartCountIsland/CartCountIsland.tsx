@@ -4,7 +4,7 @@ import {
   Icon28ShoppingCartOutline,
   Icon24ChevronCompactRight,
 } from '@vkontakte/icons'
-import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
+import { AppRoutePathEnum} from 'src/routes'
 import { selectShoppingCart } from 'src/store/shoppingCart.reducer'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { useAppSelector } from 'src/store'

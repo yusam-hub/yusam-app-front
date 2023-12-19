@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@vkontakte/vkui'
 import { FC, memo, useCallback } from 'react'
 import { ProductPreview } from 'src/types'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
-import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
+import { AppRoutePathEnum} from 'src/routes'
 import { addCartItem } from 'src/store/shoppingCart.reducer'
 
 export type AddToCartButtonProps = {

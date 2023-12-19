@@ -24,7 +24,7 @@ import { fetchProductInfo, selectProductInfo } from 'src/store/shop.reducer'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppDispatch, useAppSelector } from 'src/store'
 import { ITEMS, SECTIONS } from './techConfig'
-import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
+import { AppRoutePathEnum } from 'src/routes'
 
 import './ProductInfo.css'
 

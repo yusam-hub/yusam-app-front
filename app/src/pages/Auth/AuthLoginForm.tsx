@@ -8,7 +8,7 @@ import {
   Group, Header,
   Input,
   NavIdProps,
-  Panel, PullToRefresh, usePlatform,
+  Panel, PullToRefresh,
 } from '@vkontakte/vkui'
 import { useAppDispatch } from "../../store";
 import { setIsAuthorized } from "../../store/auth.reducer";

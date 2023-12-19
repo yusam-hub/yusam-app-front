@@ -1,4 +1,4 @@
-import {Card, CardGrid, Group, Header, PanelHeader, PopoutWrapper, Spacing} from "@vkontakte/vkui";
+import {Card, CardGrid, Header, PopoutWrapper} from "@vkontakte/vkui";
 import {HTMLAttributesWithRootRef} from "@vkontakte/vkui/src/types";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
@@ -30,6 +30,7 @@ export const BasePopoutWrapper = (
 
     return (
       <PopoutWrapper
+        {...restProps}
         onClick={onClickPopoutWrapper}
         alignX={alignX}
         alignY={alignY}

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useLayoutEffect } from 'react'
+import { FC, useCallback, useEffect } from 'react'
 import {
   SplitLayout,
   SplitCol,
@@ -14,7 +14,7 @@ import {
   usePopout,
   useRouteNavigator,
 } from '@vkontakte/vk-mini-apps-router'
-import { useAppDispatch, useAppSelector } from './store'
+import { useAppSelector } from './store'
 import { Modals } from './modals'
 import {ShoppingCatalog, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
 import { AppPanelEnum, AppViewEnum } from './routes'
@@ -30,7 +30,7 @@ const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
 
 export const App: FC = () => {
-  const dispatch = useAppDispatch()
+
   const routerPopout = usePopout()
   const platform = usePlatform()
   const routeNavigator = useRouteNavigator()
@@ -101,7 +101,7 @@ export const App: FC = () => {
       void i18n.changeLanguage(appLocale)
       //console.log("Locale changed: ", appLocale)
     }
-  }, [appLocale]);
+  }, [appLocale, i18n]);
 
   /**
    * SplitLayout - Компонент-контейнер для реализации интерфейса с многоколоночной структурой [https://vkcom.github.io/VKUI/#/SplitLayout]

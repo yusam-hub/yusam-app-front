@@ -1,19 +1,13 @@
 import './AuthVk.css'
-import React, {FC, memo, useEffect, useLayoutEffect, useState} from 'react'
+import React, {FC, memo, useEffect, useState} from 'react'
 import {
-  Card,
   NavIdProps,
-  Panel, Spacing, Spinner,
-  usePlatform,
+  Panel, Spinner,
 } from '@vkontakte/vkui'
-import {useAppDispatch, useAppSelector} from "../../store";
+import {useAppDispatch,} from "../../store";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { selectAppLocale, setAppLocale } from "../../store/app.reducer";
-import {SpinnerPopoutWrapper} from "../../popups/SpinnerPopoutWrapper";
-import {selectIsAuthorized, setIsAuthorized} from "../../store/auth.reducer";
-import bridge, {parseURLSearchParamsForGetLaunchParams} from "@vkontakte/vk-bridge";
+import { setIsAuthorized} from "../../store/auth.reducer";
+import bridge from "@vkontakte/vk-bridge";
 import {AppRoutePathEnum} from "../../routes";
 
 export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
@@ -23,9 +17,6 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
    */
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
-  const { t} = useTranslation()
-  const platform = usePlatform()
-  const appLocale: string = useSelector(selectAppLocale)
   const [ userInfoLoadingStatus, setUserInfoLoadingStatus] = useState(0)
 
   async function getUserInfo() {
@@ -90,7 +81,7 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
 
     }
 
-  }, [userInfoLoadingStatus]);
+  }, [userInfoLoadingStatus, routeNavigator, dispatch]);
 
   /**
    * RETURN CONTENT

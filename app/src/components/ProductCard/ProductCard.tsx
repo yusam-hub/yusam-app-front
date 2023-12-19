@@ -2,7 +2,7 @@ import { FC, memo, useMemo, useRef } from 'react'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { AddToCartButton, PriceDisplay } from 'src/components'
 import { ProductPreview } from 'src/types'
-import {AppPanelEnum, AppRoutePathEnum} from 'src/routes'
+import { AppRoutePathEnum} from 'src/routes'
 
 import './ProductCard.css'
 
