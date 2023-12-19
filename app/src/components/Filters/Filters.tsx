@@ -63,7 +63,7 @@ export const Filters: FC = memo(() => {
           />
         </ActionSheet>
       )
-    else routeNavigator.showModal('filter')
+    else void routeNavigator.showModal('filter')
   }, [routeNavigator, isDesktop, priceFrom, priceTo, dispatch])
 
   /** При изменении строки ввода, обновляем фильтры в state с ипользованием Таймера */
@@ -88,7 +88,7 @@ export const Filters: FC = memo(() => {
             onClick={onSearchIconClick}
           />
         }
-        iconAriaLabel="filter"
+        iconLabel="filter"
         defaultValue={query}
         onChange={onQueryChange}
       />
