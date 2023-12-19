@@ -16,10 +16,11 @@ import {
 } from '@vkontakte/vk-mini-apps-router'
 import { useAppSelector } from './store'
 import { Modals } from './modals'
-import {ShoppingCatalog, ShoppingCart, ProductInfo, AuthLoginForm} from './pages'
+import {AuthLoginForm} from './pages'
+import {ShoppingCatalog, ShoppingCart, ProductInfo} from './pages/Shop'
 import { AppPanelEnum, AppViewEnum } from './routes'
 import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
-import { CustomTabbar } from './components'
+import { CustomTabbar } from './components/Shop'
 import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';
 import {useTranslation} from "react-i18next";

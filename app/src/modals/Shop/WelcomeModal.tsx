@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon56GestureOutline } from '@vkontakte/icons'
 import { Button, ModalCard, NavIdProps } from '@vkontakte/vkui'
-import { useAppSelector } from 'src/store'
+import { useAppSelector } from '../../store'
 
 /** Приветственная модальная страница */
 const WelcomeModal: React.FC<NavIdProps & { onClose: () => void }> = (

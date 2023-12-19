@@ -15,7 +15,7 @@ import {
   setFiltersPriceRange,
   setFiltersQuery,
 } from 'src/store/shop.reducer'
-import { CustomCell, PriceRangeInput } from 'src/components'
+import { CustomCell, PriceRangeInput } from 'src/components/Shop'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import baseTheme from '@vkontakte/vkui-tokens/themes/vkBase/cssVars/theme'
 

@@ -9,7 +9,7 @@ import { selectShoppingCart } from 'src/store/shoppingCart.reducer'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { useAppSelector } from 'src/store'
 import { formatWordByNumber } from 'src/utils'
-import { PriceDisplay } from 'src/components'
+import { PriceDisplay } from 'src/components/Shop'
 
 /** Остров в Desktop версии для отображении информации о корзине */
 export const CartCountIsland: FC = memo(() => {

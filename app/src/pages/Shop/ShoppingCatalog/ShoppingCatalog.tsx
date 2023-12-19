@@ -6,19 +6,19 @@ import {
   Spacing,
   useAdaptivityWithJSMediaQueries,
 } from '@vkontakte/vkui'
-import { CartCountIsland, Filters, Products, TechInfo } from 'src/components'
-import { useAppDispatch, useAppSelector } from 'src/store'
+import { CartCountIsland, Filters, Products, TechInfo } from '../../../components/Shop'
+import { useAppDispatch, useAppSelector } from '../../../store'
 import {
   fetchFilteredProducts,
   selectShoppingCatalog,
   setShoppingCatalogScrollPosition,
-} from '../../store/shoppingCatalog.reducer'
-import { imageIntersectionObserver, findImage } from 'src/utils'
-import {fetchShop, selectFilters, selectShopName} from 'src/store/shop.reducer'
+} from '../../../store/shoppingCatalog.reducer'
+import { imageIntersectionObserver, findImage } from '../../../utils'
+import {fetchShop, selectFilters, selectShopName} from '../../../store/shop.reducer'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './ShoppingCatalog.css'
-import {selectOnWelcomeComplete} from "../../store/user.reducer";
+import {selectOnWelcomeComplete} from "../../../store/user.reducer";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 const MOBILE_LIMIT = 12

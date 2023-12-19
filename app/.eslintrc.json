@@ -35,7 +35,8 @@
     "eqeqeq": ["error", "smart"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error"
+    "react/jsx-uses-react": "error",
+    "@typescript-eslint/no-explicit-any": ["off"]
     /*"no-restricted-syntax": [
       "error",
       {

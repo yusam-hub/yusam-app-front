@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Alert } from '@vkontakte/vkui'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
-import { useAppDispatch } from 'src/store'
-import { setShoppingCart, initialState } from 'src/store/shoppingCart.reducer'
+import { useAppDispatch } from '../../../store'
+import { setShoppingCart, initialState } from '../../../store/shoppingCart.reducer'
 
 const TIMEOUT = 200
 

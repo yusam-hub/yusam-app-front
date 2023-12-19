@@ -6,7 +6,7 @@ import {
   Separator,
   useAdaptivityWithJSMediaQueries,
 } from '@vkontakte/vkui'
-import { PriceDisplay } from 'src/components'
+import { PriceDisplay } from 'src/components/Shop'
 
 import './Checkout.css'
 

@@ -3,7 +3,7 @@ import { Icon24DeleteOutline } from '@vkontakte/icons'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { OrderProduct } from 'src/types'
 import { AppRoutePathEnum} from 'src/routes'
-import { Counter, PriceDisplay } from 'src/components'
+import { Counter, PriceDisplay } from 'src/components/Shop'
 import { useAppDispatch } from 'src/store'
 import { deleteCartItem, updateCartItem } from 'src/store/shoppingCart.reducer'
 

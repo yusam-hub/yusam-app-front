@@ -1,11 +1,11 @@
 import React, { useCallback, useRef } from 'react'
-import { PriceRangeInput } from 'src/components'
+import { PriceRangeInput } from '../../components/Shop'
 import { Icon24Dismiss } from '@vkontakte/icons'
 import {
   selectPriceTo,
   selectPriceFrom,
   setFiltersPriceRange,
-} from 'src/store/shop.reducer'
+} from '../../store/shop.reducer'
 import {
   Div,
   Group,
@@ -15,7 +15,7 @@ import {
   NavIdProps,
   ModalPageHeader,
 } from '@vkontakte/vkui'
-import { useAppDispatch, useAppSelector } from 'src/store'
+import { useAppDispatch, useAppSelector } from '../../store'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 
 /** Модальная страница для показа PriceRangeInput в мобильной версии*/

@@ -11,15 +11,15 @@ import {
 } from '@vkontakte/vkui'
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router'
 import { Icon28ShoppingCartOutline } from '@vkontakte/icons'
-import { CartItem, CustomPanelHeader, Checkout, TechInfo } from 'src/components'
+import { CartItem, CustomPanelHeader, Checkout, TechInfo } from '../../../components/Shop'
 import { PayConfirmPopout } from './PayConfirmPopout'
-import { useAppDispatch, useAppSelector } from 'src/store'
-import { INITIAL_URL } from 'src/routes'
+import { useAppDispatch, useAppSelector } from '../../../store'
+import { INITIAL_URL } from '../../../routes'
 import {
   selectShoppingCart,
   setPromoCode,
-} from 'src/store/shoppingCart.reducer'
-import { formatWordByNumber } from 'src/utils'
+} from '../../../store/shoppingCart.reducer'
+import { formatWordByNumber } from '../../../utils'
 import { ITEMS, SECTIONS } from './techConfig'
 
 import './ShoppingCart.css'

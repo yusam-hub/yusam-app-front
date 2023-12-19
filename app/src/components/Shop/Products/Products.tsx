@@ -7,7 +7,7 @@ import {
   Spinner,
   useAdaptivityWithJSMediaQueries,
 } from '@vkontakte/vkui'
-import { ProductCard } from 'src/components'
+import { ProductCard } from 'src/components/Shop'
 import { ProductPreview } from 'src/types'
 import { selectOrderProducts } from 'src/store/shoppingCart.reducer'
 import { useAppSelector } from 'src/store'
