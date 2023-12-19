@@ -25,6 +25,7 @@ import './i18n';
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {AuthVk} from "./pages/Auth/AuthVk";
+import {Home} from "./pages/Home/Home";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -144,7 +145,8 @@ export const App: FC = () => {
               nav={AppViewEnum.Private}
               activePanel={activePanel}
             >
-              <ShoppingCatalog nav={AppPanelEnum.PrivateHome} />
+              <Home nav={AppPanelEnum.PrivateHome} />
+              {/*<ShoppingCatalog nav={AppPanelEnum.PrivateHome} />*/}
               <ProductInfo nav={AppPanelEnum.PrivateProductInfo} />
               <ShoppingCart nav={AppPanelEnum.PrivateShoppingCart} />
             </View>

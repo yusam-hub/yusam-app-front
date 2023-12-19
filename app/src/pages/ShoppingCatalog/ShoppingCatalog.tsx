@@ -19,7 +19,6 @@ import { ITEMS, SECTIONS } from './techConfig'
 
 import './ShoppingCatalog.css'
 import {selectOnWelcomeComplete} from "../../store/user.reducer";
-import {selectIsAuthorized} from "../../store/auth.reducer";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 const MOBILE_LIMIT = 12
@@ -132,7 +131,7 @@ export const ShoppingCatalog: FC<NavIdProps> = memo((props: NavIdProps) => {
           <Filters />
         </>
       )}
-      <div ref={$storeContainer} className={'Store'} onScroll={onHandleScroll}>
+      <div ref={$storeContainer} className={'ShoppingCatalog'} onScroll={onHandleScroll}>
 
         <Products products={shoppingCatalog.products} fetching={shoppingCatalog.isStoreFetching} />
 
