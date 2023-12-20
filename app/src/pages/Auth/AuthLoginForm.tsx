@@ -15,7 +15,7 @@ import { setIsAuthorized } from "../../store/auth.reducer";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { AppRoutePathEnum } from "../../routes";
 import { FormErrorsInterface, LocalesEnum } from "../../types";
-import { SpinnerPopoutWrapper } from "../../popups/SpinnerPopoutWrapper";
+import { CardLoadingPopoutWrapper } from "../../popups/CardLoadingPopoutWrapper";
 import { useTranslation } from "react-i18next";
 import { SelectRadioGroup } from "../../popups/Wrapper/SelectRadioGroup";
 import { useSelector } from "react-redux";
@@ -152,7 +152,7 @@ export const AuthLoginForm: FC<NavIdProps> = memo((props: NavIdProps) => {
                 onClick={() =>
                 {
                   void routeNavigator.showPopout(
-                    <SpinnerPopoutWrapper/>
+                    <CardLoadingPopoutWrapper/>
                   );
                   setControlDisabled(true);
 

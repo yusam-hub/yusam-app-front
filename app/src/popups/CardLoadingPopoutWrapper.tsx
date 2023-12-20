@@ -1,8 +1,8 @@
 import * as React from "react";
-import {Card, CardGrid, PopoutWrapper, Spinner} from "@vkontakte/vkui";
+import {PopoutWrapper} from "@vkontakte/vkui";
 import {CardLoading} from "../components/Common/CardLoading/CardLoading";
 
-export const SpinnerPopoutWrapper = () => {
+export const CardLoadingPopoutWrapper = () => {
   return (
     <PopoutWrapper>
       <CardLoading/>
