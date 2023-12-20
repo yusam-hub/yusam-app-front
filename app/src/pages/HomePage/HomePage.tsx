@@ -1,7 +1,14 @@
 import React, {FC, memo} from 'react'
-import {CellButton, Group, NavIdProps, Panel} from "@vkontakte/vkui";
-import {useAppDispatch} from "../../store";
+import {
+  Card,
+  CellButton,
+  Group,
+  NavIdProps,
+  Panel,
+} from "@vkontakte/vkui";
+
 import './HomePage.css'
+import {BreadCrumbs} from "../../components/Common/BreadCrumbs/BreadCrumbs";
 
 export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -17,7 +24,10 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <Group className="HomePage">
-
+        <Card style={{backgroundColor: "lightgrey", padding: 10}}>
+          Title of Page
+        </Card>
+        <BreadCrumbs/>
         {
           data.map(({ id, title }) => (
             <CellButton
