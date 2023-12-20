@@ -3,6 +3,7 @@
  * @param element - ProductCard
  * @returns productCardpreview
  */
+
 export function findImage(element: Element) {
   const picture = element
     .getElementsByClassName('ProductCard_preview')[0]
