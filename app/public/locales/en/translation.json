@@ -22,5 +22,8 @@
 
   "FIELD_PASS": "Password",
   "FIELD_PASS_HELPER": "The password can contain only Latin letters and numbers",
-  "FIELD_PASS_PLACEHOLDER": "enter your password here"
+  "FIELD_PASS_PLACEHOLDER": "enter your password here",
+
+  "LOADING_PLEASE_WAIT": "Please wait,",
+  "LOADING_DATA_IS_LOADING": "data is loading"
 }

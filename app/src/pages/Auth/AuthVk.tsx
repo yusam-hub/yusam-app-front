@@ -1,14 +1,17 @@
 import './AuthVk.css'
 import React, {FC, memo, useEffect, useState} from 'react'
 import {
+  Card,
   NavIdProps,
-  Panel, Spinner,
+  Panel, Spacing, Spinner,
 } from '@vkontakte/vkui'
 import {useAppDispatch,} from "../../store";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { setIsAuthorized} from "../../store/auth.reducer";
 import bridge from "@vkontakte/vk-bridge";
 import {AppRoutePathEnum} from "../../routes";
+import {useTranslation} from "react-i18next";
+import {CardLoading} from "../../components/Common/CardLoading/CardLoading";
 
 export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -18,6 +21,7 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
   const dispatch = useAppDispatch()
   const routeNavigator = useRouteNavigator()
   const [ userInfoLoadingStatus, setUserInfoLoadingStatus] = useState(0)
+  const { t} = useTranslation()
 
   async function getUserInfo() {
     setUserInfoLoadingStatus(1);
@@ -89,7 +93,7 @@ export const AuthVk: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <div className="AuthVkCenter">
-        <Spinner size="large"/>
+        <CardLoading/>
       </div>
     </Panel>
   )

@@ -1,0 +1,8 @@
+.CardLoading {
+  padding: 20px;
+}
+
+.CardLoading .message{
+  text-align: center;
+  color: gray;
+}

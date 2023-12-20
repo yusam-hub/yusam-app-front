@@ -22,5 +22,8 @@
 
   "FIELD_PASS": "Пароль",
   "FIELD_PASS_HELPER": "Пароль может содержать только латинские буквы и цифры",
-  "FIELD_PASS_PLACEHOLDER": "введите ваш пароль"
+  "FIELD_PASS_PLACEHOLDER": "введите ваш пароль",
+
+  "LOADING_PLEASE_WAIT": "Подождите пожалуйста,",
+  "LOADING_DATA_IS_LOADING": "идет загрузка данных"
 }

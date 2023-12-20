@@ -124,12 +124,12 @@ export const App: FC = () => {
      */
     <SplitLayout popout={routerPopout} modal={<Modals />}>
       {isAuthorized && isDesktop && (
-        <SplitCol width={300}>
+        <SplitCol className={'SplitColLeft'}>
           <LeftMenu/>
         </SplitCol>
       )}
       {!isAuthorized ? (
-        <SplitCol width={'100%'}>
+        <SplitCol className={'SplitColRight'}>
           <Epic
             activeStory={AppViewEnum.Public}
           >
@@ -146,7 +146,7 @@ export const App: FC = () => {
           </Epic>
         </SplitCol>
         ) : (
-        <SplitCol width={'100%'}>
+        <SplitCol className={'SplitColRight'}>
           <Epic
             activeStory={activeView}
             tabbar={!isDesktop && <CustomTabbar activePanel={activePanel} />}
@@ -157,8 +157,8 @@ export const App: FC = () => {
               nav={AppViewEnum.Private}
               activePanel={activePanel}
             >
-              {/*<HomePage nav={AppPanelEnum.PrivateHome} />*/}
-              <ShoppingCatalog nav={AppPanelEnum.PrivateHome} />
+              <HomePage nav={AppPanelEnum.PrivateHome} />
+              {/*<ShoppingCatalog nav={AppPanelEnum.PrivateHome} />*/}
               <ProductInfo nav={AppPanelEnum.PrivateProductInfo} />
               <ShoppingCart nav={AppPanelEnum.PrivateShoppingCart} />
             </View>
