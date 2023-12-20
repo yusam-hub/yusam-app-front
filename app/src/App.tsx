@@ -6,7 +6,7 @@ import {
   usePlatform,
   Platform,
   Epic,
-  useAdaptivityWithJSMediaQueries,
+  useAdaptivityWithJSMediaQueries, useAdaptivityConditionalRender, Panel,
 } from '@vkontakte/vkui'
 import bridge, { SharedUpdateConfigData } from '@vkontakte/vk-bridge'
 import {
@@ -27,6 +27,7 @@ import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {AuthVk} from "./pages/Auth/AuthVk";
 import {HomePage} from "./pages/HomePage/HomePage";
+import {LeftMenu} from "./components/Common/LeftMenu/LeftMenu";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -38,6 +39,7 @@ export const App: FC = () => {
   const routeNavigator = useRouteNavigator()
   const isAuthorized = useAppSelector(selectIsAuthorized)
   const appIsVkOpened = useAppSelector(selectAppIsVkOpened)
+  const { viewWidth } = useAdaptivityConditionalRender();
 
   /** Получаем текущую позицию */
   const {
@@ -105,6 +107,10 @@ export const App: FC = () => {
     }
   }, [appLocale, i18n]);
 
+  const SideCol = () => {
+    return <Panel id="nav">Navigation</Panel>;
+  };
+
   /**
    * SplitLayout - Компонент-контейнер для реализации интерфейса с многоколоночной структурой [https://vkcom.github.io/VKUI/#/SplitLayout]
    * SplitCol Компонент-обертка для отрисовки колонки в многоколоночном интерфейсе. [https://vkcom.github.io/VKUI/#/SplitCol]
@@ -117,8 +123,13 @@ export const App: FC = () => {
      * modal - свойство для отрисовки модальных страниц(ModalRoot)
      */
     <SplitLayout popout={routerPopout} modal={<Modals />}>
+      {isAuthorized && isDesktop && (
+        <SplitCol width={300}>
+          <LeftMenu/>
+        </SplitCol>
+      )}
       {!isAuthorized ? (
-        <SplitCol>
+        <SplitCol width={'100%'}>
           <Epic
             activeStory={AppViewEnum.Public}
           >
@@ -135,7 +146,7 @@ export const App: FC = () => {
           </Epic>
         </SplitCol>
         ) : (
-        <SplitCol>
+        <SplitCol width={'100%'}>
           <Epic
             activeStory={activeView}
             tabbar={!isDesktop && <CustomTabbar activePanel={activePanel} />}
