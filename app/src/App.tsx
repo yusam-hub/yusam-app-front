@@ -17,10 +17,9 @@ import {
 import { useAppSelector } from './store'
 import { Modals } from './modals'
 import {AuthLoginForm} from './pages'
-import {ShoppingCatalog, ShoppingCart, ProductInfo} from './pages/Shop'
+import { ShoppingCart, ProductInfo} from './pages/Shop'
 import { AppPanelEnum, AppViewEnum } from './routes'
 import { selectAppIsVkOpened, selectAppLocale } from './store/app.reducer'
-import { CustomTabbar } from './components/Shop'
 import {selectIsAuthorized} from "./store/auth.reducer";
 import './i18n';
 import {useTranslation} from "react-i18next";
@@ -28,6 +27,9 @@ import {useSelector} from "react-redux";
 import {AuthVk} from "./pages/Auth/AuthVk";
 import {HomePage} from "./pages/HomePage/HomePage";
 import {LeftMenu} from "./components/Common/LeftMenu/LeftMenu";
+import {MenuPage} from "./pages/MenuPage/MenuPage";
+import {CustomTabBar} from "./components/Common/CustomTabBar/CustomTabbar";
+import {ProfilePage} from "./pages/ProfilePage/ProfilePage";
 
 const VK_IFRAME_APP_WIDTH = 911
 const VK_IFRAME_APP_PADDING = 100
@@ -129,7 +131,7 @@ export const App: FC = () => {
         </SplitCol>
       )}
       {!isAuthorized ? (
-        <SplitCol className={'SplitColRight'}>
+        <SplitCol className={isDesktop ? 'SplitColRight' : ''}>
           <Epic
             activeStory={AppViewEnum.Public}
           >
@@ -146,10 +148,10 @@ export const App: FC = () => {
           </Epic>
         </SplitCol>
         ) : (
-        <SplitCol className={'SplitColRight'}>
+        <SplitCol className={isDesktop ? 'SplitColRight' : ''}>
           <Epic
             activeStory={activeView}
-            tabbar={!isDesktop && <CustomTabbar activePanel={activePanel} />}
+            tabbar={!isDesktop && <CustomTabBar activePanel={activePanel} />}
           >
             <View
               onSwipeBack={onSwipeBack}
@@ -158,6 +160,8 @@ export const App: FC = () => {
               activePanel={activePanel}
             >
               <HomePage nav={AppPanelEnum.PrivateHome} />
+              <MenuPage nav={AppPanelEnum.PrivateMenu} />
+              <ProfilePage nav={AppPanelEnum.PrivateProfile} />
               {/*<ShoppingCatalog nav={AppPanelEnum.PrivateHome} />*/}
               <ProductInfo nav={AppPanelEnum.PrivateProductInfo} />
               <ShoppingCart nav={AppPanelEnum.PrivateShoppingCart} />

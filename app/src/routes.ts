@@ -18,6 +18,8 @@ export enum AppPanelEnum {
   PublicLogin = 'login',
 
   PrivateHome = 'home',
+  PrivateMenu = 'menu',
+  PrivateProfile = 'profile',
   PrivateProductInfo = 'productInfo',
   PrivateShoppingCart = 'shoppingCart',
 }
@@ -26,6 +28,8 @@ export enum AppRoutePathEnum {
   PublicLogin = INITIAL_URL + 'login',
 
   PrivateHome = INITIAL_URL + '',
+  PrivateMenu = INITIAL_URL + 'menu',
+  PrivateProfile = INITIAL_URL + 'profile',
   PrivateProductInfo = INITIAL_URL + 'product-info',
   PrivateShoppingCart = INITIAL_URL + 'shopping-cart',
 }
@@ -38,6 +42,8 @@ export const routes = RoutesConfig.create([
     ]),
     createView(AppViewEnum.Private, [
       createPanel(AppPanelEnum.PrivateHome, AppRoutePathEnum.PrivateHome, []),
+      createPanel(AppPanelEnum.PrivateMenu, AppRoutePathEnum.PrivateMenu, []),
+      createPanel(AppPanelEnum.PrivateProfile, AppRoutePathEnum.PrivateProfile, []),
       createPanel(AppPanelEnum.PrivateProductInfo, AppRoutePathEnum.PrivateProductInfo, []),
       createPanel(AppPanelEnum.PrivateShoppingCart, AppRoutePathEnum.PrivateShoppingCart, []),
     ]),
