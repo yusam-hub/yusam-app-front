@@ -24,7 +24,7 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <Group className="HomePage">
-        <Card style={{backgroundColor: "lightgrey", padding: 10}}>
+        <Card style={{backgroundColor: "lightgrey", padding: 10, margin: 10}}>
           Title of Page
         </Card>
         <BreadCrumbs/>
