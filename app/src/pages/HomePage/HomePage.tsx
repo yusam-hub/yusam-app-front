@@ -40,24 +40,6 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
 
         <FilterForm/>
 
-        <Row justify='space-between' align='middle'>
-          <Col>
-            <h1>Платёжные системы</h1>
-          </Col>
-
-          <Col>
-            <Button
-              icon={<Icon20ListPlusOutline />}
-              type='primary'
-              onClick={() => {
-                console.log("Создать +++++")
-              }}
-            >
-              Создать
-            </Button>
-          </Col>
-        </Row>
-
         <Table
           dataSource={dataSource}
           columns={getColumns()}
