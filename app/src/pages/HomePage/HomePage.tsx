@@ -10,6 +10,7 @@ import {
 import './HomePage.css'
 import {BreadCrumbs} from "../../components/Common/BreadCrumbs/BreadCrumbs";
 import {DesktopHeader} from "../../components/Common/DesktopHeader/DesktopHeader";
+import {CommonHeader} from "../../components/Common/CommonHeader/CommonHeader";
 
 export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
 
@@ -27,12 +28,7 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <Group className="HomePage">
-        {isDesktop && (
-          <DesktopHeader>Title of page</DesktopHeader>
-        )}
-        {!isDesktop && (
-          <PanelHeader>Title of page</PanelHeader>
-        )}
+        <CommonHeader>Title of page</CommonHeader>
 
         <BreadCrumbs/>
 

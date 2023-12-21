@@ -3,7 +3,7 @@ import React from "react";
 import {
   Header,
   Separator,
-  Spacing,
+  Spacing, useAdaptivityWithJSMediaQueries,
 } from "@vkontakte/vkui";
 import {HTMLAttributesWithRootRef} from "@vkontakte/vkui/src/types";
 
