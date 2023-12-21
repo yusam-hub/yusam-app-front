@@ -22,7 +22,9 @@ export const BreadCrumbs: FC<NavIdProps> = memo((props: NavIdProps) => {
     <div style={{padding: 10, margin: 10, fontSize: 10}}>
       {
         data.map(({ id, title }) => (
-          <button key={id}>{title}</button>
+          <>
+            <span>&nbsp;/&nbsp;</span><button key={id}>{title}</button>
+          </>
         ))
       }
     </div>
