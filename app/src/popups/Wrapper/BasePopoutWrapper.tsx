@@ -2,7 +2,6 @@ import {Card, CardGrid, Header, PopoutWrapper} from "@vkontakte/vkui";
 import {HTMLAttributesWithRootRef} from "@vkontakte/vkui/src/types";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
-
 export interface BasePopoutWrapperPropsInterface extends HTMLAttributesWithRootRef<HTMLDivElement> {
     header?: string
     alignX?: 'left' | 'center' | 'right';

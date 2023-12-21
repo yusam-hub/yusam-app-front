@@ -2,19 +2,22 @@ import React, {FC, memo} from 'react'
 import {
   Card,
   CellButton,
-  Group,
+  Group, Header, InfoRow,
   NavIdProps,
-  Panel,
+  Panel, PanelHeader, Separator, Spacing, useAdaptivityWithJSMediaQueries,
 } from "@vkontakte/vkui";
 
 import './HomePage.css'
 import {BreadCrumbs} from "../../components/Common/BreadCrumbs/BreadCrumbs";
+import {DesktopHeader} from "../../components/Common/DesktopHeader/DesktopHeader";
 
 export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
 
+  const { isDesktop } = useAdaptivityWithJSMediaQueries()
+
   const data: any[] = [];
 
-  for(let i=1; i <= 1000; i++) {
+  for(let i=1; i <= 10; i++) {
     data.push({
       id: 'id_' + i,
       title: 'Home Page ' + i
@@ -24,23 +27,15 @@ export const HomePage: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <Group className="HomePage">
-        <Card style={{backgroundColor: "lightgrey", padding: 10, margin: 10}}>
-          Title of Page
-        </Card>
+        {isDesktop && (
+          <DesktopHeader>Title of page</DesktopHeader>
+        )}
+        {!isDesktop && (
+          <PanelHeader>Title of page</PanelHeader>
+        )}
+
         <BreadCrumbs/>
-        {
-          data.map(({ id, title }) => (
-            <CellButton
-              key={id}
-              multiline={true}
-              onClick={() => {
-                console.log("test")
-              }}
-            >
-              {title}
-            </CellButton>
-          ))
-        }
+
 
       </Group>
     </Panel>
