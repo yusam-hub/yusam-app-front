@@ -11,7 +11,7 @@ export const BreadCrumbs: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   const data: any[] = [];
 
-  for(let i=1; i <= 20; i++) {
+  for(let i=1; i <= 2; i++) {
     data.push({
       id: 'id_' + i,
       title: 'Bread Crumb ' + i
@@ -21,9 +21,11 @@ export const BreadCrumbs: FC<NavIdProps> = memo((props: NavIdProps) => {
   return (
     <div style={{padding: 10, margin: 10, fontSize: 10}}>
       {
-        data.map(({ id, title }) => (
+        data.map(({ id, title }, index) => (
           <>
-            <span>&nbsp;/&nbsp;</span><button key={id}>{title}</button>
+            <span>&nbsp;/&nbsp;</span>
+            {index === data.length-1 && <span>{title}</span>}
+            {index !== data.length-1 && <button key={id}>{title}</button>}
           </>
         ))
       }
