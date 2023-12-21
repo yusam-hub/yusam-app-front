@@ -1,20 +1,11 @@
 import './LeftMenu.css'
 import React, {FC, memo} from "react";
 import {
-  Accordion,
-  ActionSheet,
-  ActionSheetItem,
-  Button,
   CellButton,
   Group,
-  Header, MiniInfoCell,
   NavIdProps,
-  Panel,
-  SimpleCell, Spacing
 } from "@vkontakte/vkui";
-import {Icon20MessageOutline, Icon20WorkOutline} from "@vkontakte/icons";
 
-/** Блок для отображения сетки товаров */
 export const LeftMenu: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   const data: any[] = [];
@@ -27,7 +18,7 @@ export const LeftMenu: FC<NavIdProps> = memo((props: NavIdProps) => {
   }
 
   return (
-    <Group className="LeftMenu">
+    <Group className="LeftMenu" {...props}>
 
       {
         data.map(({ id, title }) => (
