@@ -24,8 +24,7 @@ export const BreadCrumbs: FC<NavIdProps> = memo((props: NavIdProps) => {
         data.map(({ id, title }, index) => (
           <>
             <span>&nbsp;/&nbsp;</span>
-            {index === data.length-1 && <span>{title}</span>}
-            {index !== data.length-1 && <button key={id}>{title}</button>}
+            <button key={id}>{title}</button>
           </>
         ))
       }
