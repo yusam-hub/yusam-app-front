@@ -1,26 +1,24 @@
 import React, {FC, memo} from 'react'
-import {CellButton, Group, NavIdProps, Panel} from "@vkontakte/vkui";
-import {useAppDispatch} from "../../store";
+import {Group, ModalCardBase, NavIdProps, Panel, Placeholder, useAdaptivityWithJSMediaQueries} from "@vkontakte/vkui";
 import './MenuPage.css'
 import {LeftMenu} from "../../components/Common/LeftMenu/LeftMenu";
+import {Icon56MentionOutline} from "@vkontakte/icons";
 
 export const MenuPage: FC<NavIdProps> = memo((props: NavIdProps) => {
 
-  const data: any[] = [];
-
-  for(let i=1; i <= 1000; i++) {
-    data.push({
-      id: 'id_' + i,
-      title: 'Home Page ' + i
-    })
-  }
+  const { isDesktop } = useAdaptivityWithJSMediaQueries()
 
   return (
     <Panel className="Panel__fullScreen" {...props}>
       <Group className="MenuPage">
-
-        <LeftMenu/>
-
+        {!isDesktop &&
+          <LeftMenu/>
+        }
+        {isDesktop &&
+          <Placeholder icon={<Icon56MentionOutline />}>
+            Выберите меню слева
+          </Placeholder>
+        }
       </Group>
     </Panel>
   )

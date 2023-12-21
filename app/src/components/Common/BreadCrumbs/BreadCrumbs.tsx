@@ -4,30 +4,31 @@ import {
   NavIdProps,
 } from "@vkontakte/vkui";
 import {useTranslation} from "react-i18next";
+import {Breadcrumb} from "antd";
 
 export const BreadCrumbs: FC<NavIdProps> = memo((props: NavIdProps) => {
 
   const { t} = useTranslation()
 
-  const data: any[] = [];
-
-  for(let i=1; i <= 2; i++) {
-    data.push({
-      id: 'id_' + i,
-      title: 'Bread Crumb ' + i
-    })
-  }
-
   return (
     <div style={{padding: 10, margin: 10, fontSize: 10}}>
-      {
-        data.map(({ id, title }, index) => (
-          <>
-            <span>&nbsp;/&nbsp;</span>
-            <button key={id}>{title}</button>
-          </>
-        ))
-      }
+      <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: <a href="#">Application Center</a>,
+          },
+          {
+            title: <a href="#">Application List</a>,
+          },
+          {
+            title: 'An Application',
+          },
+        ]}
+      />
+
     </div>
   )
 })
